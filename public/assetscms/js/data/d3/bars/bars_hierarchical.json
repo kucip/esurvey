@@ -1,0 +1,99 @@
+{
+  "name": "flare",
+  "children": [
+    {
+      "name": "B37",
+      "children": [
+        {
+          "name": "Candidiasis",
+          "size": 13
+        },
+        {
+          "name": "Candidal stomatitis",
+          "size": 6
+        },
+        {
+          "name": "Candidiasis of vulva and vagina",
+          "size": 3
+        },
+        {
+          "name": "Candidiasis, unspecified",
+          "size": 2
+        }
+      ]
+    },    
+    {
+      "name": "A15",
+      "children": [
+        {
+          "name": "Tuberculosis",
+          "size": 452
+        },
+        {
+          "name": "Tuberculosis of lung, confirmed histologically ",
+          "size": 418
+        }
+      ]
+    },
+    {
+      "name": "A00",
+      "children": [
+        {
+          "name": "Intestinal infectious diseases",
+          "size": 138
+        },
+        {
+          "name": "Cholera, unspecified",
+          "size": 23
+        }
+      ]
+    },
+    {
+      "name": "A20",
+      "children": [
+        {
+          "name": "Bubonic plague",
+          "size": 1
+        },
+        {
+          "name": "Pneumonic plague",
+          "size": 191
+        }
+      ]
+    },
+    {
+      "name": "K30",
+      "children": [
+        {
+          "name": "Dyspepsia",
+          "size": 2660
+        }
+      ]
+    },
+    {
+      "name": "J18",
+      "children": [
+        {
+          "name": "Pneumonia, organism unspecified",
+          "size": 310
+        },
+        {
+          "name": "Bronchopneumonia, unspecified",
+          "size": 486
+        },
+        {
+          "name": "Lobar pneumonia, unspecified",
+          "size": 5
+        },
+        {
+          "name": "Other pneumonia, organism unspecified",
+          "size": 7
+        },
+        {
+          "name": "Pneumonia, unspecified",
+          "size": 534
+        }
+      ]
+    }
+  ]
+}

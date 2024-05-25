@@ -1,0 +1,92 @@
+
+file : pull.sh
+
+
+#pull script==================================================
+
+LOCAL_BRANCH="wahyu"
+
+gitpull (){
+
+	echo 'Start pull .....'
+  git checkout master
+  git pull origin master
+  git checkout $LOCAL_BRANCH
+  git fetch origin
+  git merge origin/master
+  echo "Pull done ....."
+}
+
+# Options
+while getopts "l:bnahg:" opt; do
+  case $opt in
+    a)
+        echo "Pull dari master branch local : $LOCAL_BRANCH"
+        gitpull
+      ;;
+    \?)
+        echo "Invalid option:" >&2
+      ;;
+  esac
+done
+
+#==================================================
+
+
+
+
+file : push.sh
+
+#push script==================================================
+
+LOCAL_BRANCH="wahyu"
+REMOTE_REPO="siapsehat"
+
+gitpush (){
+    git add --all
+    git commit -m "$*"
+    git push origin $LOCAL_BRANCH
+    pull_request
+    echo "Push Done ..."
+}
+
+pull_request() {
+  to_branch=$1
+  if [ -z $to_branch ]; then
+    to_branch="master"
+  fi
+  
+  # try the upstream branch if possible, otherwise origin will do
+  upstream=$(git config --get remote.upstream.url)
+  origin=$(git config --get remote.origin.url)
+  if [ -z $upstream ]; then
+    upstream=$origin
+  fi
+  
+  to_user=$(echo $upstream | sed -e 's/.*[\/:]\([^/]*\)\/[^/]*$/\1/')
+  from_user=$(echo $origin | sed -e 's/.*[\/:]\([^/]*\)\/[^/]*$/\1/')
+  from_branch=$(git rev-parse --abbrev-ref HEAD)
+  open "https://github.com/$to_user/$REMOTE_REPO/compare/$to_branch...$from_branch"
+}
+
+# Options
+while getopts "l:bnahg:" opt; do
+  case $opt in
+    a)
+        echo "Push Ke Branch Local"
+        gitpush $2
+      ;;
+    \?)
+        echo "Invalid option: -$2" >&2
+      ;;
+  esac
+done
+
+#============================================================
+
+setelah bikin 2 file push.sh & pull.sh,lakukan langkah berikut 
+agar file tersebut dikenali di .gitignore
+
+git rm -rf --cached .
+git add .
+
