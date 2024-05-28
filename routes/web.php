@@ -40,6 +40,9 @@ Route::resource('comboparent', App\Http\Controllers\Cms\Combo\Master\Comboparent
 Route::resource('comborole', App\Http\Controllers\Cms\Combo\Master\ComboroleController::class);
 
 
+Route::resource('mspertanyaan', App\Http\Controllers\Cms\Master\MspertanyaanController::class);
+
+
 
 /* WEB ROUTE###############################################################*/
 Route::any('/login', [App\Http\Controllers\Web\WebController::class,'login']);

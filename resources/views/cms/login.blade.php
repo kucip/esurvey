@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>biXboX gameS</title>
+	<title>E-Survey Bakamla Kupang</title>
     <link rel="icon" type="image/x-icon" href="{{url('/')}}/images/favicon.ico" />
 
 	<!-- Global stylesheets -->
@@ -36,7 +36,7 @@
 	<style type="text/css">
 		.page-content {
 /*		    background-image: url('{{url('/')}}/images/wall{{$wallidx ?? ''}}.jpg');*/
-		    background-image: url('{{url('/')}}/images/wall2.jpg');
+		    background-image: url('{{url('/')}}/images/wall7.jpg');
 			-webkit-background-size: cover; /* For WebKit*/
 		    -moz-background-size: cover;    /* Mozilla*/
 		    -o-background-size: cover;      /* Opera*/
@@ -105,12 +105,11 @@
 					<div class="card mb-0" style="opacity: 0.8;background-color: #101010;border-radius:10px;">
 						<div class="card-body">
 							<div class="text-center mb-3">
-								<!-- <i class="icon-reading icon-2x text-slate-300 border-slate-300 border-3 rounded-round p-3 mb-3 mt-1"></i> -->
 								<a href="#" class="rounded-round p-3 mb-3 mt-1">
 									<img src="{{url('/')}}/images/bixbox5.png" class="rounded-circle" height="120" alt="">
 								</a><p>
-								<h5 class="mb-0" style="color:white;">Login to your account</h5>
-								<span class="d-block text-muted">Your credentials</span>
+								<h5 class="mb-0" style="color:white;">E-Survey Bakamla Kupang</h5>
+								<span class="d-block text-muted">Masukan data login anda!</span>
 							</div>
 
 							<div class="form-group form-group-feedback form-group-feedback-left">
@@ -131,7 +130,7 @@
 								<!-- <button type="submit" class="btn btn-primary btn-block">Sign in <i class="icon-circle-right2 ml-2"></i></button> -->
 
 								<!-- <button id="button-no-recaptcha" type="submit" class="btn btn-primary btn-block d-none">Sign in <i class="icon-circle-right2 ml-2"></i></button> -->
-								<button id="button-recaptcha" class="btn btn-primary btn-block g-recaptcha" data-sitekey="{{config('services.recaptcha.key')}}" data-callback='onSubmit' data-action='submit'>Sign in <i class="icon-circle-right2 ml-2"></i></button>
+								<button id="button-recaptcha" class="btn btn-primary btn-block g-recaptcha" data-sitekey="{{config('services.recaptcha.key')}}" data-callback='onSubmit' data-action='submit'>Login<i class="icon-circle-right2 ml-2"></i></button>
 
 							</div>
 

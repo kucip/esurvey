@@ -189,7 +189,7 @@
           <div class="col-sm-{{$dataform['col'] ?? 12}}">
             <div class="form-group">
               <label class="form-label"><b>{{$dataform['label']}}</b></label>
-              <textarea class="form-control" id="{{$dataform['field']}}" name="{{$dataform['field']}}" cols="20" rows="3" placeholder="{{$dataform['placeholder']}}"></textarea>
+              <textarea class="form-control" id="{{$dataform['field']}}" name="{{$dataform['field']}}" cols="20" rows="4" placeholder="{{$dataform['placeholder']}}"></textarea>
               <small class="form-text text-muted">{{$dataform['keterangan']}}</small>
             </div>
           </div>
