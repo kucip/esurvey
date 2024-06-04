@@ -41,6 +41,11 @@ Route::resource('comborole', App\Http\Controllers\Cms\Combo\Master\ComboroleCont
 
 
 Route::resource('mspertanyaan', App\Http\Controllers\Cms\Master\MspertanyaanController::class);
+Route::resource('mssekolah', App\Http\Controllers\Cms\Master\SekolahController::class);
+Route::resource('msumur', App\Http\Controllers\Cms\Master\UmurController::class);
+Route::resource('msunit', App\Http\Controllers\Cms\Master\UnitController::class);
+Route::resource('mslayanan', App\Http\Controllers\Cms\Master\LayananController::class);
+Route::resource('mskerja', App\Http\Controllers\Cms\Master\KerjaController::class);
 
 
 

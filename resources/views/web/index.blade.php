@@ -2,17 +2,12 @@
 
         
         <div class="row"> 
-          <div class="col-xxl-8 col-xl-7 col-lg-7">
+          <div class="col-xxl-12">
             <div class="section-box">
               <div class="container"> 
                 <div class="panel-white">
                   <div class="panel-head"> 
-                    <h5>Top Games</h5><a class="menudrop" id="dropdownMenu5" type="button" data-bs-toggle="dropdown" aria-expanded="false" data-bs-display="static"></a>
-                    <ul class="dropdown-menu dropdown-menu-light dropdown-menu-end" aria-labelledby="dropdownMenu5">
-                      <li><a class="dropdown-item active" href="#">Add new</a></li>
-                      <li><a class="dropdown-item" href="#">Settings</a></li>
-                      <li><a class="dropdown-item" href="#">Actions</a></li>
-                    </ul>
+                    <h5>Biodata Responden</h5>
                   </div>
                   <div class="panel-body">
                     <div class="row"> 
@@ -97,7 +92,7 @@
               <div class="container"> 
                 <div class="panel-white">
                   <div class="panel-head"> 
-                    <h5>Latest Games</h5><a class="menudrop" id="dropdownMenu3" type="button" data-bs-toggle="dropdown" aria-expanded="false" data-bs-display="static"></a>
+                    <h5>Pertanyaan Survey</h5>
                     <ul class="dropdown-menu dropdown-menu-light dropdown-menu-end" aria-labelledby="dropdownMenu3">
                       <li><a class="dropdown-item active" href="#">Add new</a></li>
                       <li><a class="dropdown-item" href="#">Settings</a></li>
@@ -159,187 +154,6 @@
                       <div class="card-tags"> <a class="btn btn-tag">Figma</a><a class="btn btn-tag">Adobe XD</a><a class="btn btn-tag">PSD</a>
                       </div>
                       <div class="card-price"><strong>$1500</strong><span class="hour">/Hour</span></div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-xxl-4 col-xl-5 col-lg-5">
-            <div class="section-box">
-              <div class="container"> 
-                <div class="panel-white">
-                  <div class="panel-head"> 
-                    <h5>Top Developer</h5><a class="menudrop" id="dropdownMenu4" type="button" data-bs-toggle="dropdown" aria-expanded="false" data-bs-display="static"></a>
-                    <ul class="dropdown-menu dropdown-menu-light dropdown-menu-end" aria-labelledby="dropdownMenu4">
-                      <li><a class="dropdown-item active" href="#">Add new</a></li>
-                      <li><a class="dropdown-item" href="#">Settings</a></li>
-                      <li><a class="dropdown-item" href="#">Actions</a></li>
-                    </ul>
-                  </div>
-                  <div class="panel-body">
-                    <div class="card-style-3 hover-up">
-                      <div class="card-image online"><img src="{{url('/')}}/assetsweb/imgs/page/dashboard/avata1.png" alt="jobBox"></div>
-                      <div class="card-title"> 
-                        <h6>Robert Fox</h6><span class="job-position">UI/UX Designer</span>
-                      </div>
-                      <div class="card-location"> <span class="location">Chicago, US</span></div>
-                      <div class="card-rating"><img src="{{url('/')}}/assetsweb/imgs/page/dashboard/star.svg" alt="jobBox"> <img src="{{url('/')}}/assetsweb/imgs/page/dashboard/star.svg" alt="jobBox"> <img src="{{url('/')}}/assetsweb/imgs/page/dashboard/star.svg" alt="jobBox"> <img src="{{url('/')}}/assetsweb/imgs/page/dashboard/star.svg" alt="jobBox"> <img src="{{url('/')}}/assetsweb/imgs/page/dashboard/star.svg" alt="jobBox"> <span class="font-xs color-text-mutted">
-                           (65)</span></div>
-                    </div>
-                    <div class="card-style-3 hover-up">
-                      <div class="card-image online"><img src="{{url('/')}}/assetsweb/imgs/page/dashboard/avata2.png" alt="jobBox"></div>
-                      <div class="card-title"> 
-                        <h6>Cody Fisher</h6><span class="job-position">Network Engineer</span>
-                      </div>
-                      <div class="card-location"> <span class="location">New York, US</span></div>
-                      <div class="card-rating"><img src="{{url('/')}}/assetsweb/imgs/page/dashboard/star.svg" alt="jobBox"> <img src="{{url('/')}}/assetsweb/imgs/page/dashboard/star.svg" alt="jobBox"> <img src="{{url('/')}}/assetsweb/imgs/page/dashboard/star.svg" alt="jobBox"> <img src="{{url('/')}}/assetsweb/imgs/page/dashboard/star.svg" alt="jobBox"> <img src="{{url('/')}}/assetsweb/imgs/page/dashboard/star.svg" alt="jobBox"> <span class="font-xs color-text-mutted">
-                           (65)</span></div>
-                    </div>
-                    <div class="card-style-3 hover-up">
-                      <div class="card-image online"><img src="{{url('/')}}/assetsweb/imgs/page/dashboard/avata3.png" alt="jobBox"></div>
-                      <div class="card-title"> 
-                        <h6>Jane Cooper</h6><span class="job-position">Content Manager</span>
-                      </div>
-                      <div class="card-location"> <span class="location">Chicago, US</span></div>
-                      <div class="card-rating"><img src="{{url('/')}}/assetsweb/imgs/page/dashboard/star.svg" alt="jobBox"> <img src="{{url('/')}}/assetsweb/imgs/page/dashboard/star.svg" alt="jobBox"> <img src="{{url('/')}}/assetsweb/imgs/page/dashboard/star.svg" alt="jobBox"> <img src="{{url('/')}}/assetsweb/imgs/page/dashboard/star.svg" alt="jobBox"> <img src="{{url('/')}}/assetsweb/imgs/page/dashboard/star.svg" alt="jobBox"> <span class="font-xs color-text-mutted">
-                           (65)</span></div>
-                    </div>
-                    <div class="card-style-3 hover-up">
-                      <div class="card-image online"><img src="{{url('/')}}/assetsweb/imgs/page/dashboard/avata4.png" alt="jobBox"></div>
-                      <div class="card-title"> 
-                        <h6>Jerome Bell</h6><span class="job-position">Frontend Developer</span>
-                      </div>
-                      <div class="card-location"> <span class="location">Chicago, US</span></div>
-                      <div class="card-rating"><img src="{{url('/')}}/assetsweb/imgs/page/dashboard/star.svg" alt="jobBox"> <img src="{{url('/')}}/assetsweb/imgs/page/dashboard/star.svg" alt="jobBox"> <img src="{{url('/')}}/assetsweb/imgs/page/dashboard/star.svg" alt="jobBox"> <img src="{{url('/')}}/assetsweb/imgs/page/dashboard/star.svg" alt="jobBox"> <img src="{{url('/')}}/assetsweb/imgs/page/dashboard/star.svg" alt="jobBox"> <span class="font-xs color-text-mutted">
-                           (65)</span></div>
-                    </div>
-                    <div class="card-style-3 hover-up">
-                      <div class="card-image online"><img src="{{url('/')}}/assetsweb/imgs/page/dashboard/avata5.png" alt="jobBox"></div>
-                      <div class="card-title"> 
-                        <h6>Floyd Miles</h6><span class="job-position">NodeJS Dev</span>
-                      </div>
-                      <div class="card-location"> <span class="location">Chicago, US</span></div>
-                      <div class="card-rating"><img src="{{url('/')}}/assetsweb/imgs/page/dashboard/star.svg" alt="jobBox"> <img src="{{url('/')}}/assetsweb/imgs/page/dashboard/star.svg" alt="jobBox"> <img src="{{url('/')}}/assetsweb/imgs/page/dashboard/star.svg" alt="jobBox"> <img src="{{url('/')}}/assetsweb/imgs/page/dashboard/star.svg" alt="jobBox"> <img src="{{url('/')}}/assetsweb/imgs/page/dashboard/star.svg" alt="jobBox"> <span class="font-xs color-text-mutted">
-                           (65)</span></div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="section-box">
-              <div class="container"> 
-                <div class="panel-white">
-                  <div class="panel-head"> 
-                    <h5>Collections</h5><a class="menudrop" id="dropdownMenu6" type="button" data-bs-toggle="dropdown" aria-expanded="false" data-bs-display="static"></a>
-                    <ul class="dropdown-menu dropdown-menu-light dropdown-menu-end" aria-labelledby="dropdownMenu6">
-                      <li><a class="dropdown-item active" href="#">Add new</a></li>
-                      <li><a class="dropdown-item" href="#">Settings</a></li>
-                      <li><a class="dropdown-item" href="#">Actions</a></li>
-                    </ul>
-                  </div>
-                  <div class="panel-body">
-                    <div class="card-style-5 hover-up">
-                      <div class="card-title"> 
-                        <h6 class="font-sm">Developer</h6>
-                      </div>
-                      <div class="card-progress"> 
-                        <div class="number font-sm">2635</div>
-                        <div class="progress">
-                          <div class="progress-bar" style="width: 100%"></div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="card-style-5 hover-up">
-                      <div class="card-title"> 
-                        <h6 class="font-sm">UI/Ux Designer</h6>
-                      </div>
-                      <div class="card-progress"> 
-                        <div class="number font-sm">1658</div>
-                        <div class="progress">
-                          <div class="progress-bar" style="width: 90%"></div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="card-style-5 hover-up">
-                      <div class="card-title"> 
-                        <h6 class="font-sm">Marketing</h6>
-                      </div>
-                      <div class="card-progress"> 
-                        <div class="number font-sm">1452</div>
-                        <div class="progress">
-                          <div class="progress-bar" style="width: 80%"></div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="card-style-5 hover-up">
-                      <div class="card-title"> 
-                        <h6 class="font-sm">Content manager</h6>
-                      </div>
-                      <div class="card-progress"> 
-                        <div class="number font-sm">1325</div>
-                        <div class="progress">
-                          <div class="progress-bar" style="width: 70%"></div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="card-style-5 hover-up">
-                      <div class="card-title"> 
-                        <h6 class="font-sm">Ruby on rain</h6>
-                      </div>
-                      <div class="card-progress"> 
-                        <div class="number font-sm">985</div>
-                        <div class="progress">
-                          <div class="progress-bar" style="width: 60%"></div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="card-style-5 hover-up">
-                      <div class="card-title"> 
-                        <h6 class="font-sm">Human hunter</h6>
-                      </div>
-                      <div class="card-progress"> 
-                        <div class="number font-sm">920</div>
-                        <div class="progress">
-                          <div class="progress-bar" style="width: 50%"></div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="card-style-5 hover-up">
-                      <div class="card-title"> 
-                        <h6 class="font-sm">Finance</h6>
-                      </div>
-                      <div class="card-progress"> 
-                        <div class="number font-sm">853</div>
-                        <div class="progress">
-                          <div class="progress-bar" style="width: 40%"></div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="mt-10">
-          <div class="section-box">
-            <div class="container"> 
-              <div class="panel-white pt-30 pb-30 pl-15 pr-15">
-                <div class="box-swiper">
-                  <div class="swiper-container swiper-group-10">
-                    <div class="swiper-wrapper">
-                      <div class="swiper-slide"> <img src="{{url('/')}}/assetsweb/imgs/page/dashboard/microsoft.svg" alt="jobBox"></div>
-                      <div class="swiper-slide"> <img src="{{url('/')}}/assetsweb/imgs/page/dashboard/sony.svg" alt="jobBox"></div>
-                      <div class="swiper-slide"> <img src="{{url('/')}}/assetsweb/imgs/page/dashboard/acer.svg" alt="jobBox"></div>
-                      <div class="swiper-slide"> <img src="{{url('/')}}/assetsweb/imgs/page/dashboard/nokia.svg" alt="jobBox"></div>
-                      <div class="swiper-slide"> <img src="{{url('/')}}/assetsweb/imgs/page/dashboard/asus.svg" alt="jobBox"></div>
-                      <div class="swiper-slide"> <img src="{{url('/')}}/assetsweb/imgs/page/dashboard/casio.svg" alt="jobBox"></div>
-                      <div class="swiper-slide"> <img src="{{url('/')}}/assetsweb/imgs/page/dashboard/dell.svg" alt="jobBox"></div>
-                      <div class="swiper-slide"> <img src="{{url('/')}}/assetsweb/imgs/page/dashboard/panasonic.svg" alt="jobBox"></div>
-                      <div class="swiper-slide"> <img src="{{url('/')}}/assetsweb/imgs/page/dashboard/vaio.svg" alt="jobBox"></div>
-                      <div class="swiper-slide"> <img src="{{url('/')}}/assetsweb/imgs/page/dashboard/sony.svg" alt="jobBox"></div>
                     </div>
                   </div>
                 </div>

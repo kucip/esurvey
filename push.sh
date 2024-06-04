@@ -1,4 +1,4 @@
-LOCAL_BRANCH="wahyu"
+LOCAL_BRANCH="master"
 REMOTE_REPO="bixboxgames"
 
 gitpush (){

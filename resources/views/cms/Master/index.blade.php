@@ -1,7 +1,7 @@
 <x-cms_templete_top :data="$data" />
 
 <div class="row">
-  <div class="col-md-8">
+  <div class="col-md-7">
 
     <!-- Basic layout-->
     <div class="card">
@@ -92,7 +92,7 @@
 
     <!-- /basic layout -->
   </div>
-  <div class="col-md-4">
+  <div class="col-md-5">
 
     <!-- Basic layout-->
     <div class="card">
@@ -207,11 +207,12 @@
             <div class="form-group">
               <select name="{{$dataform['field']}}" id="{{$dataform['field']}}" class="form-control {{$dataform['field']}}">
                 <option value="">{{$dataform['default']}}</option>
-                @foreach($dataform['combodata'] as $key => $combodata)
-                <option value="{{$combodata->comboValue}}">{{$combodata->comboLabel}}</option>
+                @foreach($dataform['combodata'] as $key => $val)
+                <option value="{{$val['comboValue']}}">{{$val['comboLabel']}}</option>
                 @endforeach
               </select>
               <small class="form-text text-muted">{{$dataform['keterangan']}}</small>
+
               <script>
                 $(".{{$dataform['field']}}").select2({
                   placeholder: "{{$dataform['default']}}",

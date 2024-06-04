@@ -27,6 +27,13 @@ class MspertanyaanController extends Controllermaster
                 'type' => 'text',
                 'width' => ''
             ),
+            array(
+                'label' => 'STATUS',
+                'field' => 'surTayang2',
+                'type' => 'text',
+                'width' => '10%',
+                'class' => 'center'
+            ),
 
         );
 
@@ -129,7 +136,7 @@ class MspertanyaanController extends Controllermaster
                 'label' => 'STATUS TAYANG',
                 'field' => 'surTayang',
                 'type' => 'combo',
-                'combodata' =>$this->yatidak,
+                'combodata' => $this->yatidak,
                 'keterangan' => '* Wajib Diisi',
                 'default'=>'Pilih Status Tayang',
             ),
@@ -177,7 +184,18 @@ class MspertanyaanController extends Controllermaster
                         ->paginate(15);
                 }
             }
-            
+
+            $data=$listdata;
+            $index=0;
+            foreach ($data as $key => $val) {
+                if($val->surTayang==1){
+                    $listdata[$index]->surTayang2='Tayang';
+                }else{
+                    $listdata[$index]->surTayang2='Tidak';                    
+                }
+                $index++;
+            }
+
             $data = array(
                 'authmenu' => $this->getusermenu(),
                 'company' => Session::get('compNama'),
