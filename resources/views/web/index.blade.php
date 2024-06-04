@@ -10,80 +10,40 @@
                     <h5>Biodata Responden</h5>
                   </div>
                   <div class="panel-body">
+
                     <div class="row"> 
-                      <div class="col-lg-6 col-md-6 pr-5 pl-5">
-                        <div class="card-style-4 hover-up">
-                          <div class="d-flex">
-                            <div class="card-image"><img src="{{url('/')}}/assetsweb/imgs/page/dashboard/avata1.png" alt="jobBox"></div>
-                            <div class="card-title"> 
-                              <h6>Robert Fox</h6><img src="{{url('/')}}/assetsweb/imgs/page/dashboard/star.svg" alt="jobBox"> <img src="{{url('/')}}/assetsweb/imgs/page/dashboard/star.svg" alt="jobBox"> <img src="{{url('/')}}/assetsweb/imgs/page/dashboard/star.svg" alt="jobBox"> <img src="{{url('/')}}/assetsweb/imgs/page/dashboard/star-none.svg" alt="jobBox"> <img src="{{url('/')}}/assetsweb/imgs/page/dashboard/star-none.svg" alt="jobBox"> <span class="font-xs color-text-mutted">
-                                 (65)</span>
-                            </div>
-                          </div>
-                          <div class="card-location d-flex"><span class="location">Red, CA</span><span class="jobs-number">25 Open Jobs</span></div>
+                      <div class="col-lg-6 col-md-6">
+                        <div class="form-group mb-30"> 
+                          <label class="font-sm color-text-mutted mb-10">Nama Lengkap</label>
+                          <input class="form-control" type="text" placeholder="Arjuna Mahesa">
                         </div>
                       </div>
-                      <div class="col-lg-6 col-md-6 pr-5 pl-5">
-                        <div class="card-style-4 hover-up">
-                          <div class="d-flex">
-                            <div class="card-image"><img src="{{url('/')}}/assetsweb/imgs/page/dashboard/avata2.png" alt="jobBox"></div>
-                            <div class="card-title"> 
-                              <h6>Cody Fisher</h6><img src="{{url('/')}}/assetsweb/imgs/page/dashboard/star.svg" alt="jobBox"> <img src="{{url('/')}}/assetsweb/imgs/page/dashboard/star.svg" alt="jobBox"> <img src="{{url('/')}}/assetsweb/imgs/page/dashboard/star.svg" alt="jobBox"> <img src="{{url('/')}}/assetsweb/imgs/page/dashboard/star-none.svg" alt="jobBox"> <img src="{{url('/')}}/assetsweb/imgs/page/dashboard/star-none.svg" alt="jobBox"> <span class="font-xs color-text-mutted">
-                                 (65)</span>
-                            </div>
-                          </div>
-                          <div class="card-location d-flex"><span class="location">Chicago, US</span><span class="jobs-number">25 Open Jobs</span></div>
+                      <div class="col-lg-6 col-md-6">
+                        <div class="form-group mb-30">
+                          <label class="font-sm color-text-mutted mb-10">Email</label>
+                          <input class="form-control" type="text" placeholder="arjuna.mahesa@gmail.com">
                         </div>
                       </div>
-                      <div class="col-lg-6 col-md-6 pr-5 pl-5">
-                        <div class="card-style-4 hover-up">
-                          <div class="d-flex">
-                            <div class="card-image"><img src="{{url('/')}}/assetsweb/imgs/page/dashboard/avata3.png" alt="jobBox"></div>
-                            <div class="card-title"> 
-                              <h6>Jane Cooper</h6><img src="{{url('/')}}/assetsweb/imgs/page/dashboard/star.svg" alt="jobBox"> <img src="{{url('/')}}/assetsweb/imgs/page/dashboard/star.svg" alt="jobBox"> <img src="{{url('/')}}/assetsweb/imgs/page/dashboard/star.svg" alt="jobBox"> <img src="{{url('/')}}/assetsweb/imgs/page/dashboard/star-none.svg" alt="jobBox"> <img src="{{url('/')}}/assetsweb/imgs/page/dashboard/star-none.svg" alt="jobBox"> <span class="font-xs color-text-mutted">
-                                 (65)</span>
-                            </div>
-                          </div>
-                          <div class="card-location d-flex"><span class="location">Austin, TX</span><span class="jobs-number">25 Open Jobs</span></div>
+                      <div class="col-lg-6 col-md-6">
+                        <div class="form-group mb-30">
+                          <label class="font-sm color-text-mutted mb-10">Nomor HP</label>
+                          <input class="form-control" type="text" placeholder="081-1234-5678">
                         </div>
                       </div>
-                      <div class="col-lg-6 col-md-6 pr-5 pl-5">
-                        <div class="card-style-4 hover-up">
-                          <div class="d-flex">
-                            <div class="card-image"><img src="{{url('/')}}/assetsweb/imgs/page/dashboard/avata4.png" alt="jobBox"></div>
-                            <div class="card-title"> 
-                              <h6>Jerome Bell</h6><img src="{{url('/')}}/assetsweb/imgs/page/dashboard/star.svg" alt="jobBox"> <img src="{{url('/')}}/assetsweb/imgs/page/dashboard/star.svg" alt="jobBox"> <img src="{{url('/')}}/assetsweb/imgs/page/dashboard/star.svg" alt="jobBox"> <img src="{{url('/')}}/assetsweb/imgs/page/dashboard/star-none.svg" alt="jobBox"> <img src="{{url('/')}}/assetsweb/imgs/page/dashboard/star-none.svg" alt="jobBox"> <span class="font-xs color-text-mutted">
-                                 (65)</span>
-                            </div>
-                          </div>
-                          <div class="card-location d-flex"><span class="location">Remote</span><span class="jobs-number">25 Open Jobs</span></div>
+                      <div class="col-lg-6 col-md-6">
+                        <div class="form-group mb-30">
+                          <label class="font-sm color-text-mutted mb-10">Alamat</label>
+                          <input class="form-control" type="text" placeholder="JL. Hati Mulia No.11C Kota Kupang - NTT">
                         </div>
                       </div>
-                      <div class="col-lg-6 col-md-6 pr-5 pl-5">
-                        <div class="card-style-4 hover-up">
-                          <div class="d-flex">
-                            <div class="card-image"><img src="{{url('/')}}/assetsweb/imgs/page/dashboard/avata5.png" alt="jobBox"></div>
-                            <div class="card-title"> 
-                              <h6>Floyd Miles</h6><img src="{{url('/')}}/assetsweb/imgs/page/dashboard/star.svg" alt="jobBox"> <img src="{{url('/')}}/assetsweb/imgs/page/dashboard/star.svg" alt="jobBox"> <img src="{{url('/')}}/assetsweb/imgs/page/dashboard/star.svg" alt="jobBox"> <img src="{{url('/')}}/assetsweb/imgs/page/dashboard/star-none.svg" alt="jobBox"> <img src="{{url('/')}}/assetsweb/imgs/page/dashboard/star-none.svg" alt="jobBox"> <span class="font-xs color-text-mutted">
-                                 (65)</span>
-                            </div>
-                          </div>
-                          <div class="card-location d-flex"><span class="location">Boston, US</span><span class="jobs-number">25 Open Jobs</span></div>
-                        </div>
-                      </div>
-                      <div class="col-lg-6 col-md-6 pr-5 pl-5">
-                        <div class="card-style-4 hover-up">
-                          <div class="d-flex">
-                            <div class="card-image"><img src="{{url('/')}}/assetsweb/imgs/page/dashboard/avata1.png" alt="jobBox"></div>
-                            <div class="card-title"> 
-                              <h6>Devon Lane</h6><img src="{{url('/')}}/assetsweb/imgs/page/dashboard/star.svg" alt="jobBox"> <img src="{{url('/')}}/assetsweb/imgs/page/dashboard/star.svg" alt="jobBox"> <img src="{{url('/')}}/assetsweb/imgs/page/dashboard/star.svg" alt="jobBox"> <img src="{{url('/')}}/assetsweb/imgs/page/dashboard/star-none.svg" alt="jobBox"> <img src="{{url('/')}}/assetsweb/imgs/page/dashboard/star-none.svg" alt="jobBox"> <span class="font-xs color-text-mutted">
-                                 (65)</span>
-                            </div>
-                          </div>
-                          <div class="card-location d-flex"><span class="location">Chicago, US</span><span class="jobs-number">25 Open Jobs</span></div>
+
+                      <div class="col-lg-12"> 
+                        <div class="form-group mt-10">
+                          <button class="btn btn-default btn-brand icon-tick">Lanjut Survey</button>
                         </div>
                       </div>
                     </div>
+
                   </div>
                 </div>
               </div>
