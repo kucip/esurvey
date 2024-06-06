@@ -906,7 +906,7 @@ h6,
 }
 .btn.btn-default:hover {
   background-color: #05264E;
-  transform: translateY(-2px);
+/*  transform: translateY(-2px);*/
   transition: 0.2s;
 }
 .btn.btn-notify {

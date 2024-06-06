@@ -1,27 +1,27 @@
 <x-web_templete_top :data="$data" />
 <style type="text/css">
-  .option{
-    margin-top: 5px;
-    margin-left: 20px;
-  }
-  .radio-label{
-    margin-left: 10px;
-  }
-  .font-sq{
-    float: inline-start;
-    margin-right: 10px;
-    margin-left: 0px;
-    text-align: left;
-  }
+    .option{
+      margin-top: 5px;
+      margin-left: 20px;
+    }
+    .radio-label{
+      margin-left: 10px;
+    }
+    .font-sq{
+      float: inline-start;
+      margin-right: 10px;
+      margin-left: 0px;
+      text-align: left;
+    }
 
-.center {
-  margin: 0;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  -ms-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-}
+    .center {
+      margin: 0;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      -ms-transform: translate(-50%, -50%);
+      transform: translate(-50%, -50%);
+    }
 
 </style>
         
@@ -67,7 +67,7 @@
 
                       <div class="col-lg-12" style="margin-top: 20px;"> 
                         <div class="form-group">
-                          <button class="btn btn-default btn-brand center">Lanjut Survey</button>
+                          <button class="btn btn-default center">Lanjut Survey</button>
                         </div>
                       </div>
 
@@ -105,7 +105,7 @@
                       </div>
 
                       <div class="form-group col-lg-12" style="margin-top:30px;">
-                        <button class="btn btn-default btn-brand center">Simpan Survey</button>
+                        <button class="btn btn-default center">Simpan Survey</button>
                       </div>
                       &nbsp;
                   </div>
