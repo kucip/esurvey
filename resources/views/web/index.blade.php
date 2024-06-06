@@ -13,6 +13,16 @@
     margin-left: 0px;
     text-align: left;
   }
+
+.center {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
 </style>
         
         <div class="row"> 
@@ -28,13 +38,13 @@
                     <div class="row"> 
                       <div class="col-lg-6 col-md-6">
                         <div class="form-group mb-30"> 
-                          <label class="font-sm color-text-mutted mb-10">Nama Lengkap</label>
+                          <label class="font-sm color-text-mutted mb-10">NAMA LENGKAP</label>
                           <input class="form-control" type="text" placeholder="Arjuna Mahesa">
                         </div>
                       </div>
                       <div class="col-lg-6 col-md-6">
                         <div class="form-group mb-30">
-                          <label class="font-sm color-text-mutted mb-10">Jenis Kelamin</label>
+                          <label class="font-sm color-text-mutted mb-10">JENIS KELAMIN</label>
                           <select class="form-control">
                               <option value="">-PILIH-</option>
                               <option value="1">Laki-Laki</option>
@@ -44,20 +54,20 @@
                       </div>
                       <div class="col-lg-6 col-md-6">
                         <div class="form-group mb-30">
-                          <label class="font-sm color-text-mutted mb-10">Nomor HP</label>
+                          <label class="font-sm color-text-mutted mb-10">NOMOR HP</label>
                           <input class="form-control" type="text" placeholder="081-1234-5678">
                         </div>
                       </div>
                       <div class="col-lg-6 col-md-6">
                         <div class="form-group mb-30">
-                          <label class="font-sm color-text-mutted mb-10">Alamat</label>
+                          <label class="font-sm color-text-mutted mb-10">ALAMAT</label>
                           <input class="form-control" type="text" placeholder="JL. Hati Mulia No.11C Kota Kupang - NTT">
                         </div>
                       </div>
 
-                      <div class="col-lg-12"> 
-                        <div class="form-group mt-10">
-                          <button class="btn btn-default btn-brand icon-tick">Lanjut Survey</button>
+                      <div class="col-lg-12" style="margin-top: 20px;"> 
+                        <div class="form-group">
+                          <button class="btn btn-default btn-brand center">Lanjut Survey</button>
                         </div>
                       </div>
 
@@ -71,9 +81,9 @@
               <div class="container"> 
                 <div class="panel-white">
                   <div class="panel-head"> 
-                    <h5>Pertanyaan Survey</h5>
+                    <h5 style="margin-left:-10px;">Pertanyaan Survey</h5>
                   </div>
-                  <div class="row" style="margin-left: 20px;padding-top: 10px;">
+                  <div class="row" style="margin-left: 10px;padding-top: 10px;">
                       <div class="form-group col-lg-6">
                         <div class="font-sq">1.</div>
                         <div class="font-sm">ini adalah pertanyaan survey pertama jbjsd jasbdj ashbdjhasbdjhasbjd ashbd bsdjbsabd jasb dhj?????</div>                          
@@ -94,10 +104,10 @@
                         <div class="option"><input type="radio" id="option25" name="q2" value="5"><label class="radio-label" for="option25">ini adalah option 5</label><br></div>
                       </div>
 
-                      <div class="form-group col-lg-12">
-                        <button class="btn btn-default btn-brand">Simpan Survey</button>
+                      <div class="form-group col-lg-12" style="margin-top:30px;">
+                        <button class="btn btn-default btn-brand center">Simpan Survey</button>
                       </div>
-
+                      &nbsp;
                   </div>
                 </div>
               </div>
