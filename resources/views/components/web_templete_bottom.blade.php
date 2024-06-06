@@ -3,7 +3,7 @@
             <div class="box-footer">
               <div class="row">
                 <div class="col-md-6 col-sm-12 mb-25 text-center text-md-start">
-                  <p class="font-sm color-text-paragraph-2"><a class="color-brand-2" href="#" target="_blank">Kucip</a>©2024</p>
+                  <p class="font-sm color-text-paragraph-2"><a class="color-brand-2" href="#" target="_blank">Bakamla Kupang </a>© 2024</p>
                 </div>
               </div>
             </div>
