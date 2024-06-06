@@ -73,7 +73,7 @@
                   <div class="panel-head"> 
                     <h5>Pertanyaan Survey</h5>
                   </div>
-                  <div class="row" style="margin-left: 20px;">
+                  <div class="row" style="margin-left: 20px;padding-top: 10px;">
                       <div class="form-group col-lg-6">
                         <div class="font-sq">1.</div>
                         <div class="font-sm">ini adalah pertanyaan survey pertama jbjsd jasbdj ashbdjhasbdjhasbjd ashbd bsdjbsabd jasb dhj?????</div>                          
