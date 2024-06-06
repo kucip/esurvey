@@ -53,67 +53,31 @@
                 <div class="panel-white">
                   <div class="panel-head"> 
                     <h5>Pertanyaan Survey</h5>
-                    <ul class="dropdown-menu dropdown-menu-light dropdown-menu-end" aria-labelledby="dropdownMenu3">
-                      <li><a class="dropdown-item active" href="#">Add new</a></li>
-                      <li><a class="dropdown-item" href="#">Settings</a></li>
-                      <li><a class="dropdown-item" href="#">Actions</a></li>
-                    </ul>
                   </div>
-                  <div class="panel-body">
-                    <div class="card-style-2 hover-up">
-                      <div class="card-head">
-                        <div class="card-image"> <img src="{{url('/')}}/assetsweb/imgs/page/dashboard/img1.png" alt="jobBox"></div>
-                        <div class="card-title"> 
-                          <h6>Senior Full Stack Engineer, Creator Success</h6><span class="job-type">Full time</span><span class="time-post">3mins ago</span><span class="location">New York, US</span>
-                        </div>
-                      </div>
-                      <div class="card-tags"> <a class="btn btn-tag">Figma</a><a class="btn btn-tag">Adobe XD</a>
-                      </div>
-                      <div class="card-price"><strong>$300</strong><span class="hour">/Hour</span></div>
-                    </div>
-                    <div class="card-style-2 hover-up">
-                      <div class="card-head">
-                        <div class="card-image"> <img src="{{url('/')}}/assetsweb/imgs/page/dashboard/img2.png" alt="jobBox"></div>
-                        <div class="card-title"> 
-                          <h6>Senior Full Stack Engineer, Creator Success</h6><span class="job-type">Full time</span><span class="time-post">3mins ago</span><span class="location">Chicago, US</span>
-                        </div>
-                      </div>
-                      <div class="card-tags"> <a class="btn btn-tag">Figma</a><a class="btn btn-tag">Adobe XD</a><a class="btn btn-tag">PSD</a>
-                      </div>
-                      <div class="card-price"><strong>$650</strong><span class="hour">/Hour</span></div>
-                    </div>
-                    <div class="card-style-2 hover-up">
-                      <div class="card-head">
-                        <div class="card-image"> <img src="{{url('/')}}/assetsweb/imgs/page/dashboard/img3.png" alt="jobBox"></div>
-                        <div class="card-title"> 
-                          <h6>Lead Product/UX/UI Designer Role</h6><span class="job-type">Full time</span><span class="time-post">3mins ago</span><span class="location">Paris, France</span>
-                        </div>
-                      </div>
-                      <div class="card-tags"> <a class="btn btn-tag">Figma</a><a class="btn btn-tag">Adobe XD</a><a class="btn btn-tag">PSD</a>
-                      </div>
-                      <div class="card-price"><strong>$1200</strong><span class="hour">/Hour</span></div>
-                    </div>
-                    <div class="card-style-2 hover-up">
-                      <div class="card-head">
-                        <div class="card-image"> <img src="{{url('/')}}/assetsweb/imgs/page/dashboard/img4.png" alt="jobBox"></div>
-                        <div class="card-title"> 
-                          <h6>Marketing Graphic Designer</h6><span class="job-type">Full time</span><span class="time-post">3mins ago</span><span class="location">Tokyto, Japan</span>
-                        </div>
-                      </div>
-                      <div class="card-tags"> <a class="btn btn-tag">Figma</a><a class="btn btn-tag">Adobe XD</a><a class="btn btn-tag">PSD</a>
-                      </div>
-                      <div class="card-price"><strong>$580</strong><span class="hour">/Hour</span></div>
-                    </div>
-                    <div class="card-style-2 hover-up">
-                      <div class="card-head">
-                        <div class="card-image"> <img src="{{url('/')}}/assetsweb/imgs/page/dashboard/img5.png" alt="jobBox"></div>
-                        <div class="card-title"> 
-                          <h6>Director, Product Design - Creator</h6><span class="job-type">Full time</span><span class="time-post">3mins ago</span><span class="location">Ha Noi, Vietnam</span>
-                        </div>
-                      </div>
-                      <div class="card-tags"> <a class="btn btn-tag">Figma</a><a class="btn btn-tag">Adobe XD</a><a class="btn btn-tag">PSD</a>
-                      </div>
-                      <div class="card-price"><strong>$1500</strong><span class="hour">/Hour</span></div>
+                  <div class="row" style="padding-left: 20px;">
+                    <div class="col-lg-12">
+                      <ol type="1">
+                        <li>
+                            <div class="form-group">
+                              <label class="font-sm">ini adalah pertanyaan survey pertama?????</label>
+                              <div><input type="radio" id="option1" name="q1" value="1"><label for="option1">ini adalah option 1</label><br></div>
+                              <div><input type="radio" id="option2" name="q1" value="2"><label for="option2">ini adalah option 2</label><br></div>
+                              <div><input type="radio" id="option3" name="q1" value="3"><label for="option3">ini adalah option 3</label><br></div>
+                              <div><input type="radio" id="option4" name="q1" value="4"><label for="option4">ini adalah option 4</label><br></div>
+                              <div><input type="radio" id="option5" name="q1" value="5"><label for="option5">ini adalah option 5</label><br></div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="form-group">
+                              <label class="font-sm">ini adalah pertanyaan survey kedua?????</label>
+                              <div><input type="radio" id="option1" name="q2" value="1"><label for="option1">ini adalah option 1</label><br></div>
+                              <div><input type="radio" id="option2" name="q2" value="2"><label for="option2">ini adalah option 2</label><br></div>
+                              <div><input type="radio" id="option3" name="q2" value="3"><label for="option3">ini adalah option 3</label><br></div>
+                              <div><input type="radio" id="option4" name="q2" value="4"><label for="option4">ini adalah option 4</label><br></div>
+                              <div><input type="radio" id="option5" name="q2" value="5"><label for="option5">ini adalah option 5</label><br></div>
+                            </div>
+                        </li>
+                      </ol>
                     </div>
                   </div>
                 </div>

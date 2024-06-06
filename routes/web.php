@@ -14,9 +14,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::resource('/', App\Http\Controllers\Web\WebController::class);
+// Route::resource('/', App\Http\Controllers\Web\WebController::class);
 Route::resource('/cms', App\Http\Controllers\Cms\MainController::class);
-Route::any('/web', [App\Http\Controllers\Web\WebController::class,'webdev']);
+Route::any('/', [App\Http\Controllers\Web\WebController::class,'webdev']);
 Route::get('/getsession', function(){
 	return Session::all();
 });
