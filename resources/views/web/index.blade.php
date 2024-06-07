@@ -61,7 +61,7 @@
                       <div class="col-lg-6 col-md-6">
                         <div class="form-group mb-30">
                           <label class="font-sm color-text-mutted mb-10">ALAMAT</label>
-                          <input class="form-control" type="text" placeholder="JL. Hati Mulia No.11C Kota Kupang - NTT">
+                          <input class="form-control" type="text" placeholder="JL. Hati Mulia 7 No.11 Kota Kupang - NTT">
                         </div>
                       </div>
 
