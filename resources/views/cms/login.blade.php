@@ -106,7 +106,7 @@
 						<div class="card-body">
 							<div class="text-center mb-3">
 								<a href="#" class="rounded-round p-3 mb-3 mt-1">
-									<img src="{{url('/')}}/images/bixbox5.png" class="rounded-circle" height="120" alt="">
+									<img src="{{url('/')}}/images/logo-bakamla.png" class="rounded-circle" height="120" alt="">
 								</a><p>
 								<h5 class="mb-0" style="color:white;">E-Survey Bakamla Kupang</h5>
 								<span class="d-block text-muted">Masukan data login anda!</span>
