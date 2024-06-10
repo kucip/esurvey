@@ -4,32 +4,30 @@ namespace App\Http\Controllers\Web;
 
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Http\Request;
+use App\Models\Master\Umur;
+use App\Models\Master\Layanan;
+use App\Models\Master\Sekolah;
+use App\Models\Master\Unit;
+use App\Models\Master\Mspertanyaan;
 use Session;
 class WebController extends BaseController {
 
     public function index(){
-        return view('comingsoon');
-    }
+        $umur = new Umur;
+        $layanan = new Layanan;
+        $pendidikan = new Sekolah;
+        $unit = new Unit;
+        $pertanyaan = new Mspertanyaan;
 
-    public function webdev(){
+        // return $pertanyaan->get();
+        $data = array('umur'=>$umur->get(),
+                      'pendidikan'=>$pendidikan->get(),
+                      'layanan'=>$layanan->get(),
+                      'unit'=>$unit->get(),
+                      'pertanyaan'=>$pertanyaan->get(),
+                     );
 
-        $name = trim(Session::get('name'));
-        if($name<>''){
-            $data = array('isLogin'=>1,'message'=>'','name'=>$name);
-        }else{
-            $data = array('isLogin'=>0,'message'=>'','name'=>'');
-        }
         return view('web.index', $data)->with('data', $data);
-    }
-
-    public function login(){
-        $data = array('isLogin'=>0,'message'=>'');
-        return view('web.login', $data)->with('data', $data);
-    }
-
-    public function register(){
-        $data = array('isLogin'=>0,'message'=>'');
-        return view('web.register', $data)->with('data', $data);
     }
 
 }

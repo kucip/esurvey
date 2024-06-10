@@ -39,12 +39,12 @@
                       <div class="col-lg-6 col-md-6">
                         <div class="form-group mb-30"> 
                           <label class="font-sm color-text-mutted mb-10">NAMA LENGKAP</label>
-                          <input class="form-control" type="text" placeholder="Arjuna Mahesa">
+                          <input class="form-control" id="nama" type="text" placeholder="Arjuna Mahesa">
                         </div>
                       </div>
                       <div class="col-lg-6 col-md-6">
                         <div class="form-group mb-30">
-                          <label class="font-sm color-text-mutted mb-10">JENIS KELAMIN</label>
+                          <label class="font-sm color-text-mutted mb-10" id="jkelamin">JENIS KELAMIN</label>
                           <select class="form-control">
                               <option value="">-PILIH-</option>
                               <option value="1">Laki-Laki</option>
@@ -55,19 +55,64 @@
                       <div class="col-lg-6 col-md-6">
                         <div class="form-group mb-30">
                           <label class="font-sm color-text-mutted mb-10">NOMOR HP</label>
-                          <input class="form-control" type="text" placeholder="081-1234-5678">
+                          <input class="form-control" type="text" id="nohp" placeholder="081-1234-5678">
                         </div>
                       </div>
                       <div class="col-lg-6 col-md-6">
                         <div class="form-group mb-30">
                           <label class="font-sm color-text-mutted mb-10">ALAMAT</label>
-                          <input class="form-control" type="text" placeholder="JL. Hati Mulia 7 No.11 Kota Kupang - NTT">
+                          <input class="form-control" type="text" id="alamat" placeholder="JL. Hati Mulia 7 No.11 Kota Kupang - NTT">
+                        </div>
+                      </div>
+                      <div class="col-lg-6 col-md-6">
+                        <div class="form-group mb-30">
+                          <label class="font-sm color-text-mutted mb-10">UMUR</label>
+                          <select class="form-control" id="umur">
+                              <option value="">-PILIH-</option>
+                              @foreach($umur as $val)
+                                  <option value="{{$val->umurId}}">{{$val->umurNama}}</option>                                
+                              @endforeach
+                          </select>
+                        </div>
+                      </div>
+                      <div class="col-lg-6 col-md-6">
+                        <div class="form-group mb-30">
+                          <label class="font-sm color-text-mutted mb-10">PENDIDIKAN</label>
+                          <select class="form-control" id="pendidikan">
+                              <option value="">-PILIH-</option>
+                              @foreach($pendidikan as $val)
+                                  <option value="{{$val->sekId}}">{{$val->sekLevel}}</option>                                
+                              @endforeach
+                          </select>
+                        </div>
+                      </div>
+                      <div class="col-lg-6 col-md-6">
+                        <div class="form-group mb-30">
+                          <label class="font-sm color-text-mutted mb-10">LAYANAN</label>
+                          <select class="form-control" id="layanan">
+                              <option value="">-PILIH-</option>
+                              @foreach($layanan as $val)
+                                  <option value="{{$val->layId}}">{{$val->layNama}}</option>                                
+                              @endforeach
+                          </select>
+                        </div>
+                      </div>
+
+                      <div class="col-lg-6 col-md-6">
+                        <div class="form-group mb-30">
+                          <label class="font-sm color-text-mutted mb-10">UNIT KERJA</label>
+                          <select class="form-control" id="unitkerja">
+                              <option value="">-PILIH-</option>
+                              @foreach($unit as $val)
+                                  <option value="{{$val->unitId}}">{{$val->unitNama}}</option>                                
+                              @endforeach
+                          </select>
                         </div>
                       </div>
 
                       <div class="col-lg-12" style="margin-top: 20px;"> 
                         <div class="form-group">
-                          <button class="btn btn-default center">Lanjut Survey</button>
+                          <button class="btn btn-default center" onclick="lanjut()">Lanjut Survey</button>
                         </div>
                       </div>
 
@@ -77,32 +122,35 @@
                 </div>
               </div>
             </div>            
-            <div class="section-box">
+            <div class="section-box" id="boxpertanyaan" name="boxpertanyaan" style="display: none;">
               <div class="container"> 
                 <div class="panel-white">
                   <div class="panel-head"> 
                     <h5 style="margin-left:-10px;">Pertanyaan Survey</h5>
                   </div>
                   <div class="row" style="margin-left: 10px;padding-top: 10px;">
+                    @php
+                      $i=1;
+                    @endphp
+                    @foreach($pertanyaan as $val)
                       <div class="form-group col-lg-6">
-                        <div class="font-sq">1.</div>
-                        <div class="font-sm">ini adalah pertanyaan survey pertama jbjsd jasbdj ashbdjhasbdjhasbjd ashbd bsdjbsabd jasb dhj?????</div>                          
+                        <div class="font-sq">{{$i}}</div>
+                        <div class="font-sm">{{$val->surPertanyaan}}</div>                          
+                        <div class="option"><input type="radio" id="option{{$val->surId}}_1" name="q_{{$val->surId}}" value="1"><label class="radio-label" for="option{{$val->surId}}_1">{{$val->surOpt1}}</label><br></div>
+                        <div class="option"><input type="radio" id="option{{$val->surId}}_2" name="q_{{$val->surId}}" value="2"><label class="radio-label" for="option{{$val->surId}}_2">{{$val->surOpt2}}</label><br></div>
+                        <div class="option"><input type="radio" id="option{{$val->surId}}_3" name="q_{{$val->surId}}" value="3"><label class="radio-label" for="option{{$val->surId}}_3">{{$val->surOpt3}}</label><br></div>
+                        <div class="option"><input type="radio" id="option{{$val->surId}}_4" name="q_{{$val->surId}}" value="4"><label class="radio-label" for="option{{$val->surId}}_4">{{$val->surOpt4}}</label><br></div>
+                        <div class="option"><input type="radio" id="option{{$val->surId}}_5" name="q_{{$val->surId}}" value="5"><label class="radio-label" for="option{{$val->surId}}_5">{{$val->surOpt5}}</label><br></div>
+                      </div>
+                      @php
+                        $i++;
+                      @endphp
+                    @endforeach
 
-                        <div class="option"><input type="radio" id="option11" name="q1" value="1"><label class="radio-label" for="option11">ini adalah option 1</label><br></div>
-                        <div class="option"><input type="radio" id="option12" name="q1" value="2"><label class="radio-label" for="option12">ini adalah option 2</label><br></div>
-                        <div class="option"><input type="radio" id="option13" name="q1" value="3"><label class="radio-label" for="option13">ini adalah option 3</label><br></div>
-                        <div class="option"><input type="radio" id="option14" name="q1" value="4"><label class="radio-label" for="option14">ini adalah option 4</label><br></div>
-                        <div class="option"><input type="radio" id="option15" name="q1" value="5"><label class="radio-label" for="option15">ini adalah option 5</label><br></div>
-                      </div>
-                      <div class="form-group col-lg-6">
-                        <div class="font-sq">2.</div>
-                        <div class="font-sm">ini adalah pertanyaan survey kedua?????</div>
-                        <div class="option"><input type="radio" id="option21" name="q2" value="1"><label class="radio-label" for="option21">ini adalah option 1</label><br></div>
-                        <div class="option"><input type="radio" id="option22" name="q2" value="2"><label class="radio-label" for="option22">ini adalah option 2</label><br></div>
-                        <div class="option"><input type="radio" id="option23" name="q2" value="3"><label class="radio-label" for="option23">ini adalah option 3</label><br></div>
-                        <div class="option"><input type="radio" id="option24" name="q2" value="4"><label class="radio-label" for="option24">ini adalah option 4</label><br></div>
-                        <div class="option"><input type="radio" id="option25" name="q2" value="5"><label class="radio-label" for="option25">ini adalah option 5</label><br></div>
-                      </div>
+                    <div class="form-group col-lg-12">
+                      <label class="font-sm">KRITIK DAN SARAN</label>
+                      <textarea class="form-control" rows="4" placeholder="Isilah Kritik dan Saran"></textarea>
+                    </div>
 
                       <div class="form-group col-lg-12" style="margin-top:30px;">
                         <button class="btn btn-default center">Simpan Survey</button>
@@ -115,4 +163,19 @@
           </div>
         </div>
 
+<script type="text/javascript">
+    function lanjut(){
+        var nama=document.getElementById("nama").value;
+        var jkelamin=document.getElementById("jkelamin").value;
+        var nohp=document.getElementById("nohp").value;
+        var alamat=document.getElementById("alamat").value;
+        var umur=document.getElementById("umur").value;
+        var pendidikan=document.getElementById("pendidikan").value;
+        var layanan=document.getElementById("layanan").value;
+        var unit=document.getElementById("unitkerja").value;
+
+
+        document.getElementById("boxpertanyaan").style="display:block";
+    }
+</script>
 <x-web_templete_bottom />
