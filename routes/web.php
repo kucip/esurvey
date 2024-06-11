@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::resource('/', App\Http\Controllers\Web\WebController::class);
 Route::resource('/cms', App\Http\Controllers\Cms\MainController::class);
-// Route::any('/', [App\Http\Controllers\Web\WebController::class,'webdev']);
+Route::any('/thanks', [App\Http\Controllers\Web\WebController::class,'thanks']);
 Route::get('/getsession', function(){
 	return Session::all();
 });
@@ -47,9 +47,8 @@ Route::resource('msunit', App\Http\Controllers\Cms\Master\UnitController::class)
 Route::resource('mslayanan', App\Http\Controllers\Cms\Master\LayananController::class);
 Route::resource('mskerja', App\Http\Controllers\Cms\Master\KerjaController::class);
 
-
+Route::resource('rawdata', App\Http\Controllers\Cms\Data\DatasurveyController::class);
 
 /* WEB ROUTE###############################################################*/
-Route::any('/login', [App\Http\Controllers\Web\WebController::class,'login']);
-Route::any('/register', [App\Http\Controllers\Web\WebController::class,'register']);
+Route::resource('savesurvey', App\Http\Controllers\Cms\Data\DatasurveyController::class);
 

@@ -73,7 +73,7 @@ class Controllermaster extends BaseController
         }
 
         $resultdata =  $this->model->create($request->all());
-        $this->addSysLog($this->model->getTable(), 'create', json_encode($resultdata));
+        // $this->addSysLog($this->model->getTable(), 'create', json_encode($resultdata));
         return $resultdata;
         // return response()->json([new  $this->resources($resultdata)]);
     }

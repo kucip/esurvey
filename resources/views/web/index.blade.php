@@ -24,7 +24,8 @@
     }
 
 </style>
-
+        @csrf
+        <input type="hidden" id="compId" value="{{$compId}}">
         <div class="row"> 
           <div class="col-xxl-12">
             <div class="section-box">
@@ -239,23 +240,25 @@
         var unit=document.getElementById("unitkerja").value;
         var saran=document.getElementById("saran").value;
 
-        var posData={};
-            posData.dataNama = nama;
-            posData.dataKelamin = jkelamin;
-            posData.dataHp = nohp;
-            posData.dataAlamat = alamat;
-            posData.dataUmur = umur;
-            posData.dataPendidikan = pendidikan;
-            posData.dataLayanan = layanan;
-            posData.dataUnit = unit;
-            posData.dataSaran = saran;
+        var postData={};
+            postData.dataNama = nama;
+            postData.dataKelamin = jkelamin;
+            postData.dataHp = nohp;
+            postData.dataAlamat = alamat;
+            postData.dataUmur = umur;
+            postData.dataPendidikan = pendidikan;
+            postData.dataLayanan = layanan;
+            postData.dataUnit = unit;
+            postData.dataSaran = saran;
+            postData._token = document.getElementsByName('_token')[0].defaultValue;
+            postData.compId = document.getElementById('compId').value || 1;
 
         var textWarning='';
         document.getElementById("warningjawaban").style="display:none";
         $('#warningjawaban').html(textWarning);
         var status=false;
         for(var i=1;i<=10;i++){
-            var text1='posData.dataTanya'+i+'='+document.getElementById('idtanya_'+i).value || '';
+            var text1='postData.dataTanya'+i+'='+document.getElementById('idtanya_'+i).value || '';
             eval(text1);
             var radioEL=document.getElementsByName('q_'+i);
             var radValue=0;
@@ -269,7 +272,7 @@
                status=true;
             }
 
-            var text2='posData.dataJawab'+i+'='+radValue;
+            var text2='postData.dataJawab'+i+'='+radValue;
             eval(text2);
         }
         
@@ -283,6 +286,23 @@
            $('#warningjawaban').html(textWarning);
            return;
         }
+        $.ajax({
+          type: "POST",
+          url: "/savesurvey",
+          data: (postData),
+          dataType: "json",
+          async: false,
+          success: function(data) {
+            var nama=data.dataNama;
+            setTimeout(function() {
+              window.open("/thanks?nama="+nama, "_self");
+            }, 100);
+
+          },
+          error: function(dataerror) {
+            console.log(dataerror);
+          }
+        });
 
     }
 

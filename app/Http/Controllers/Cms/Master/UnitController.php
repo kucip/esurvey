@@ -45,8 +45,6 @@ class UnitController extends Controllermaster
     public function index()
     {
 
-        // return $this->yatidak;
-
         if (trim(Session::get('email')) == '' or $this->checkRouteAuth() == 2) {
             $wallidx = rand(1, 7);
             $data = array(

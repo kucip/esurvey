@@ -18,16 +18,24 @@ class WebController extends BaseController {
         $pendidikan = new Sekolah;
         $unit = new Unit;
         $pertanyaan = new Mspertanyaan;
+        $compId = 1;
 
-        // return $pertanyaan->get();
         $data = array('umur'=>$umur->get(),
                       'pendidikan'=>$pendidikan->get(),
                       'layanan'=>$layanan->get(),
                       'unit'=>$unit->get(),
                       'pertanyaan'=>$pertanyaan->get(),
+                      'compId' => $compId,
                      );
 
         return view('web.index', $data)->with('data', $data);
     }
 
+    public function thanks(){
+        $nama=$_GET['nama'];
+        $data = array('nama'=>$nama,
+                     );
+
+        return view('web.thanks', $data)->with('data', $data);
+    }
 }
