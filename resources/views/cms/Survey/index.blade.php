@@ -121,7 +121,7 @@
           </div>
           <div class="row">
               <div class="col-md-1 text-semibold">&nbsp;</div>            
-              <div class="col-md-11 text-semibold" id="isiSaran"></div>            
+              <div class="col-md-11 text-semibold" id="isiSaran" style="text-align: justify;padding-right: 20px;"></div>            
           </div>
 
         </div>
