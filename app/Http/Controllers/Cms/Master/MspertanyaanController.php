@@ -27,13 +27,13 @@ class MspertanyaanController extends Controllermaster
                 'type' => 'text',
                 'width' => ''
             ),
-            array(
-                'label' => 'STATUS',
-                'field' => 'surTayang2',
-                'type' => 'text',
-                'width' => '10%',
-                'class' => 'center'
-            ),
+            // array(
+            //     'label' => 'STATUS',
+            //     'field' => 'surTayang2',
+            //     'type' => 'text',
+            //     'width' => '10%',
+            //     'class' => 'center'
+            // ),
 
         );
 
@@ -58,15 +58,6 @@ class MspertanyaanController extends Controllermaster
                 'type' => 'text',
                 'placeholder' => 'Opsi 1',
                 'keterangan' => '* Wajib Diisi',
-                'col'=>8
-            ),
-            array(
-                'label' => 'BOBOT 1',
-                'field' => 'surBobot1',
-                'type' => 'text',
-                'placeholder' => 'Bobot 1',
-                'keterangan' => '* Wajib Diisi',
-                'col'=>4
             ),
             array(
                 'label' => 'JAWABAN 2',
@@ -74,15 +65,6 @@ class MspertanyaanController extends Controllermaster
                 'type' => 'text',
                 'placeholder' => 'Opsi 2',
                 'keterangan' => '* Wajib Diisi',
-                'col'=>8
-            ),
-            array(
-                'label' => 'BOBOT 2',
-                'field' => 'surBobot2',
-                'type' => 'text',
-                'placeholder' => 'Bobot 2',
-                'keterangan' => '* Wajib Diisi',
-                'col'=>4
             ),
             array(
                 'label' => 'JAWABAN 3',
@@ -90,15 +72,6 @@ class MspertanyaanController extends Controllermaster
                 'type' => 'text',
                 'placeholder' => 'Opsi 3',
                 'keterangan' => '* Wajib Diisi',
-                'col'=>8
-            ),
-            array(
-                'label' => 'BOBOT 3',
-                'field' => 'surBobot3',
-                'type' => 'text',
-                'placeholder' => 'Bobot 3',
-                'keterangan' => '* Wajib Diisi',
-                'col'=>4
             ),
             array(
                 'label' => 'JAWABAN 4',
@@ -106,15 +79,6 @@ class MspertanyaanController extends Controllermaster
                 'type' => 'text',
                 'placeholder' => 'Opsi 4',
                 'keterangan' => '* Wajib Diisi',
-                'col'=>8
-            ),
-            array(
-                'label' => 'BOBOT 4',
-                'field' => 'surBobot4',
-                'type' => 'text',
-                'placeholder' => 'Bobot 4',
-                'keterangan' => '* Wajib Diisi',
-                'col'=>4
             ),
             array(
                 'label' => 'JAWABAN 5',
@@ -122,24 +86,15 @@ class MspertanyaanController extends Controllermaster
                 'type' => 'text',
                 'placeholder' => 'Opsi 5',
                 'keterangan' => '* Wajib Diisi',
-                'col'=>8
             ),
-            array(
-                'label' => 'BOBOT 5',
-                'field' => 'surBobot5',
-                'type' => 'text',
-                'placeholder' => 'Bobot 5',
-                'keterangan' => '* Wajib Diisi',
-                'col'=>4
-            ),
-            array(
-                'label' => 'STATUS TAYANG',
-                'field' => 'surTayang',
-                'type' => 'combo',
-                'combodata' => $this->yatidak,
-                'keterangan' => '* Wajib Diisi',
-                'default'=>'Pilih Status Tayang',
-            ),
+            // array(
+            //     'label' => 'STATUS TAYANG',
+            //     'field' => 'surTayang',
+            //     'type' => 'combo',
+            //     'combodata' => $this->yatidak,
+            //     'keterangan' => '* Wajib Diisi',
+            //     'default'=>'Pilih Status Tayang',
+            // ),
         );
     }
 
