@@ -2,28 +2,6 @@
 
 
 <div class="row">
-
-<div id="modal_theme_info" class="modal fade">
-  <div class="modal-dialog">
-    <div class="modal-content" >
-      <div class="modal-header bg-info">
-        <h6 class="modal-title">Detail Survey</h6>
-      </div>
-      <div class="modal-body">
-        <h6 class="text-semibold">Text in a modal</h6>
-        <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>
-
-      </div>
-
-      <div class="modal-footer">
-        <button type="button" class="btn btn-info" data-dismiss="modal">Tutup</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-  
   <div class="col-md-12">
     <!-- Basic layout-->
     <div class="card">
@@ -75,6 +53,7 @@
                 @php
                 $pmKey=$data->$primaryKey;
                 $detail=$data->dataDetail;
+                $dataSaran=$data->dataSaran;
                 $rowIndex ++;
                 @endphp
 
@@ -87,6 +66,7 @@
                 @endforeach
                 <td>
                   <center>
+                    <input type="hidden" id="kritikSaran{{$pmKey}}" name="kritikSaran{{$pmKey}}" value="{{$dataSaran}}">
                     <input type="hidden" id="gridDetail{{$pmKey}}" name="gridDetail{{$pmKey}}" value="{{$detail}}">
                     <input type="hidden" id="gridPmKey{{$rowIndex}}" name="gridPmKey{{$rowIndex}}" value="{{$pmKey}}">
                     <a onclick="grid_detail({{$pmKey}})" style="color: green; padding:4px;max-width: 30px;max-height: 30px;"><i class="icon-list-unordered" aria-hidden="true"></i></a>
@@ -119,11 +99,42 @@
   </div>
 </div>
 
+<div class="row">
+  
+  <div id="modal_theme_info" class="modal fade">
+    <div class="modal-dialog modal-xl">
+      <div class="modal-content" >
+        <div class="modal-header bg-info">
+          <h6 class="modal-title">Detail Survey</h6>
+        </div>
+        <div class="col-md-12 modal-body">
+          <div class="row">
+              <div class="col-md-1 text-semibold">&nbsp;</div>            
+              <div class="col-md-7 text-semibold"><h6>Pertanyaan</h6></div>            
+              <div class="col-md-4 text-semibold"><h6>Jawaban</h6></div>            
+          </div>
+          <div id="isiDetail"></div>
+          <br>
+          <div class="row">
+              <div class="col-md-1 text-semibold">&nbsp;</div>            
+              <div class="col-md-11 text-semibold"><h6>Kritik & Saran</h6></div>            
+          </div>
+          <div class="row">
+              <div class="col-md-1 text-semibold">&nbsp;</div>            
+              <div class="col-md-11 text-semibold" id="isiSaran"></div>            
+          </div>
 
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-info" data-dismiss="modal">Tutup</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
-<button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#modal_theme_info" id="showmodal" style="display: none;">Launch</button>                   
-        <!-- Info modal -->
+</div>
 
+<button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#modal_theme_info" id="showmodal" style="display: none;">Launch</button>
 <script type="text/javascript">
   function grid_delete(id) {
     var postdata = {};
@@ -155,8 +166,22 @@
   }
 
   function grid_detail(id){
+    $('#isiDetail').html('');
+    $('#isiSaran').html('');
     var detail=JSON.parse(document.getElementById('gridDetail'+id).value);
-    console.log(detail);
+    var saran=document.getElementById('kritikSaran'+id).value;
+    var isi='';
+    for(var i=0;i<detail.length;i++){
+        isi +='\
+                <div class="row" style="margin-top:6px;">\
+                    <div class="col-md-1 text-semibold" style="text-align:center">'+(i+1)+'</div>\
+                    <div class="col-md-7 text-semibold">'+detail[i].tanya+'</div>\
+                    <div class="col-md-4 text-semibold">'+detail[i].jawab+'</div>\
+                </div>\
+             ';
+    }
+    $('#isiDetail').html(isi);
+    $('#isiSaran').html(saran);
     document.getElementById('showmodal').click();
   }
 </script>
