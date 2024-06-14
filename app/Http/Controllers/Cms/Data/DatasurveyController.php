@@ -32,25 +32,29 @@ class DatasurveyController extends Controllermaster{
                 'label' => 'GENDER',
                 'field' => 'dataKelamin',
                 'type' => 'text',
-                'width' => '10%'
+                'width' => '10%',
+                'class' => 'center'
             ),
             array(
                 'label' => 'UMUR',
                 'field' => 'dataUmur',
                 'type' => 'text',
-                'width' => '12%'
+                'width' => '12%',
+                'class' => 'center'
             ),
             array(
                 'label' => 'PENDIDIKAN',
                 'field' => 'dataPendidikan',
                 'type' => 'text',
-                'width' => '10%'
+                'width' => '10%',
+                'class' => 'center'
             ),
             array(
                 'label' => 'PHONE',
                 'field' => 'dataHp',
                 'type' => 'text',
-                'width' => '10%'
+                'width' => '10%',
+                'class' => 'center'
             ),
             array(
                 'label' => 'LOG',
@@ -142,8 +146,8 @@ class DatasurveyController extends Controllermaster{
 
     public function generateSurvey($data){
         $result=array();
-
-        for($i=1;$i<=10;$i++){
+        $length = Mspertanyaan::count();
+        for($i=1;$i<=$length;$i++){
             $mssurvey=$this->getPertanyaan($data['dataTanya'.$i]);            
             $tanya=$mssurvey['surPertanyaan'];
             $jawabIdx=$data['dataJawab'.$i];
@@ -157,17 +161,17 @@ class DatasurveyController extends Controllermaster{
 
     public function getPertanyaan($idx){
         $res = Mspertanyaan::select('*')->where('surId','=',$idx)->get();
-        return $res[0];
+        return !empty($res[0])?$res[0]:array();
     }
 
     public function getUmur($idx){
         $res = Umur::select('umurNama')->where('umurId','=',$idx)->get();
-        return $res[0]->umurNama;
+        return !empty($res[0]->umurNama)?$res[0]->umurNama:'';
     }
 
     public function getPendidikan($idx){
         $res = Sekolah::select('sekLevel')->where('sekId','=',$idx)->get();
-        return $res[0]->sekLevel;
+        return !empty($res[0]->sekLevel)?$res[0]->sekLevel:'';
     }
 }
 

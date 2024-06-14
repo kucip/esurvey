@@ -133,6 +133,7 @@
                   <div class="panel-head"> 
                     <h5 style="margin-left:-10px;">Pertanyaan Survey</h5>
                   </div>
+                  <input type="hidden" id="datapertanyaan" name="datapertanyaan" value="{{json_encode($pertanyaan)}}">
                   <div class="row" style="margin-left: 10px;padding-top: 10px;">
                     @php
                       $i=1;
@@ -152,7 +153,7 @@
                       @endphp
                     @endforeach
 
-                    <div class="form-group col-lg-12" style="padding-right: 20px;">
+                    <div class="form-group col-lg-6" style="padding-right: 20px;">
                       <label class="font-sm">KRITIK DAN SARAN</label>
                       <textarea class="form-control" rows="4" placeholder="Isilah Kritik dan Saran" id="saran"></textarea>
                     </div>
@@ -257,7 +258,8 @@
         document.getElementById("warningjawaban").style="display:none";
         $('#warningjawaban').html(textWarning);
         var status=false;
-        for(var i=1;i<=10;i++){
+        var length=JSON.parse(document.getElementById("datapertanyaan").value).length;
+        for(var i=1;i<=length;i++){
             var text1='postData.dataTanya'+i+'='+document.getElementById('idtanya_'+i).value || '';
             eval(text1);
             var radioEL=document.getElementsByName('q_'+i);
