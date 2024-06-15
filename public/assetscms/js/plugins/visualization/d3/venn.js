@@ -126,10 +126,10 @@
         }
 
         // sort by size desc
-        // function sortOrder(a,b) {
-        //     return b.size - a.size;
-        // }
-        // mostOverlapped.sort(sortOrder);
+        function sortOrder(a,b) {
+            return b.size - a.size;
+        }
+        mostOverlapped.sort(sortOrder);
 
         // keep track of what sets have been laid out
         var positioned = {};
@@ -145,22 +145,17 @@
         }
 
         // add most overlapped set at (0,0)
-        // console.log(mostOverlapped[0].set);
-        // console.log(mostOverlapped);
         positionSet({x: 0, y: 0}, mostOverlapped[0].set);
-        // positionSet({x: 0, y: 0}, 0);
 
         // get distances between all points
         var distances = venn.getDistanceMatrix(sets, overlaps);
 
-        // console.log(mostOverlapped);
         for (i = 1; i < mostOverlapped.length; ++i) {
-            var setIndex = mostOverlapped[i].set;
-            var overlap  = setOverlaps[setIndex].filter(isPositioned);
+            var setIndex = mostOverlapped[i].set,
+                overlap = setOverlaps[setIndex].filter(isPositioned);
             set = sets[setIndex];
-            // overlap.sort(sortOrder);
+            overlap.sort(sortOrder);
 
-            // console.log(overlap);
             if (overlap.length === 0) {
                 throw "Need overlap information for set " + JSON.stringify( set );
             }

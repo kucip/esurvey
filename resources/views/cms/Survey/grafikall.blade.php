@@ -1,5 +1,9 @@
 <x-cms_templete_top :data="$data" />
 
+<script src="{{url('/')}}/assetscms/js/plugins/visualization/echarts/echarts.js"></script>
+<script src="{{url('/')}}/assetscms/js/plugins/visualization/echarts/theme/limitless.js"></script>
+<script src="{{url('/')}}/assetscms/js/plugins/visualization/echarts/chart/bar.js"></script>
+<script src="{{url('/')}}/assetscms/js/plugins/visualization/echarts/chart/line.js"></script>
 
 <div class="row">
   <div class="col-md-12">
@@ -32,13 +36,49 @@ function listPertanyaan(data){
                     <div class="card-header header-elements-inline">\
                       <h5>'+data[i].surPertanyaan+'</h5>\
                     </div>\
-                    <div class="card-body">\
+                    <div class="card-body"><div class="chart has-fixed-height" id="graph'+i+'"></div>\
                     </div>\
                   </div>\
               ';
     }
     $('#listtanya').html(result);
-    console.log(data);
+
+    setTimeout(function(){
+        setGraphData(data);
+    },1000);
+
+    // console.log(data);
+}
+
+function setGraphData(data){
+// $(function () {
+   console.log(data);
+   for(var i=0;i<data.length;i++){
+
+        var chartDom = document.getElementById('graph'+i);
+        var myChart = echarts.init(chartDom);
+        var option;
+        var dataJ=data[i];
+
+        option = {
+          xAxis: {
+            type: 'category',
+            data: [dataJ.surOpt1,dataJ.surOpt2,dataJ.surOpt3,dataJ.surOpt4,dataJ.surOpt5]
+          },
+          yAxis: {
+            type: 'value'
+          },
+          series: [
+            {
+              data: [Number(dataJ.dataStat.jawab1), Number(dataJ.dataStat.jawab2), Number(dataJ.dataStat.jawab3), Number(dataJ.dataStat.jawab4), Number(dataJ.dataStat.jawab5)],
+              type: 'bar'
+            }
+          ]
+        };
+
+        myChart.setOption(option);
+   }
+
 
 }
 
