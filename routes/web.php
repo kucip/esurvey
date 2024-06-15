@@ -52,4 +52,5 @@ Route::resource('rawdata', App\Http\Controllers\Cms\Data\DatasurveyController::c
 /* WEB ROUTE###############################################################*/
 Route::resource('savesurvey', App\Http\Controllers\Cms\Data\DatasurveyController::class);
 Route::resource('graph', App\Http\Controllers\Cms\Data\GrafikallController::class);
+Route::resource('kritik', App\Http\Controllers\Cms\Data\KritikController::class);
 

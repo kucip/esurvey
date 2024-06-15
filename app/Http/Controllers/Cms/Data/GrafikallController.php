@@ -53,7 +53,7 @@ class GrafikallController extends Controllermaster
                 'detail' => Session::get('compDetail'),
                 'name' => Session::get('name'),
                 'namelong' => Session::get('email'),
-                'page_tittle' => strtoupper('Grafik Seluruh Pertanyaan'),
+                'page_tittle' => strtoupper('Grafik Seluruh Pertanyaan').' :: Jumlah Responden = '.number_format($this->model->count(),0),
                 'page_active' => 'Grafik Seluruh Pertanyaan',
                 'listdata' => json_encode($listdata),
                 'primaryKey' => $this->primaryKey,
