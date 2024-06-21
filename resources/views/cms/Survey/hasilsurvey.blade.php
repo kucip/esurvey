@@ -8,21 +8,17 @@
         <h5 class="card-title">{{$data['page_tittle']??''}}</h5>
         <div class="header-elements">
           <div class="list-icons">
-            <form action="/{{$mainroute}}" method="GET">
               <div class="form-group row">
                 <div class="input-group">
-                  <input type="text" name="search" id="search" value="{{$search ?? ''}}" class="form-control" placeholder="Search Here">
                   <span class="input-group-append">
-                    <span class="input-group-text"><i class="icon-search4"></i></span>
-                    <span class="input-group-text">
-                      <a class="list-icons-item" data-action="collapse"></a>
-                    </span>
+                    <button class="input-group-text" id="btnExport" onclick="exportReportToExcel(this)" ><i class="icon-file-excel"></i>&nbsp; Export ke Excel</button>
+                    <!-- <button id="btnExport" onclick="exportReportToExcel(this)">EXPORT REPORT</button> -->
                   </span>
                 </div>
               </div>
-            </form>
           </div>
         </div>
+
       </div>
 
       @csrf
@@ -104,6 +100,22 @@
     <!-- /basic layout -->
   </div>
 </div>
+
+
+<script type="text/javascript">
+
+function exportReportToExcel() {
+  let table = document.getElementsByTagName("table"); // you can use document.getElementById('tableId') as well by providing id to the table tag
+  TableToExcel.convert(table[0], { // html code may contain multiple tables so here we are refering to 1st table tag
+    name: 'data-hasil-survey.xlsx', // fileName you could use any name
+    sheet: {
+      name: 'Sheet 1' // sheetName
+    }
+  });
+}
+
+</script>
+
 
 
 <x-cms_templete_bottom />

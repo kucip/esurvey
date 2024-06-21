@@ -48,6 +48,7 @@
 	<script src="{{url('/')}}/assetscms/js/plugins/forms/selects/select2.min.js"></script>
 	<script src="{{url('/')}}/assetscms/js/plugins/forms/validation/validate.min.js"></script>
 
+	<script src="{{url('/')}}/assetscms/js/tabletoexcel.js"></script>
 
 	<!-- Custom Template v2 -->
 	<!-- CSS -->

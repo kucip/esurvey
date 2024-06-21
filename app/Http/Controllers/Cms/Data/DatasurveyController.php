@@ -8,6 +8,7 @@ use App\Models\Data\Datasurvey;
 use App\Models\Master\Umur;
 use App\Models\Master\Sekolah;
 use App\Models\Master\Mspertanyaan;
+use App\Models\Master\Kerja;
 use Session;
 use Input;
 
@@ -45,6 +46,13 @@ class DatasurveyController extends Controllermaster{
             array(
                 'label' => 'PENDIDIKAN',
                 'field' => 'dataPendidikan',
+                'type' => 'text',
+                'width' => '10%',
+                'class' => 'center'
+            ),
+            array(
+                'label' => 'PEKERJAAN',
+                'field' => 'dataPekerjaan',
                 'type' => 'text',
                 'width' => '10%',
                 'class' => 'center'
@@ -115,6 +123,7 @@ class DatasurveyController extends Controllermaster{
                     $listdata[$idx]['dataKelamin']='';                    
                 }
 
+                $listdata[$idx]['dataPekerjaan']=$this->getPekerjaan($val->dataPekerjaan);                    
                 $listdata[$idx]['dataUmur']=$this->getUmur($val->dataUmur);                    
                 $listdata[$idx]['dataPendidikan']=$this->getPendidikan($val->dataPendidikan);                    
                 $listdata[$idx]['dataDetail' ]=json_encode($this->generateSurvey($listdata[$idx]));
@@ -157,6 +166,11 @@ class DatasurveyController extends Controllermaster{
         }
 
         return $result;
+    }
+
+    public function getPekerjaan($idx){
+        $res = Kerja::select('*')->where('kerjaId','=',$idx)->get();
+        return !empty($res[0]->kerjaNama)?$res[0]->kerjaNama:'';
     }
 
     public function getPertanyaan($idx){

@@ -6,6 +6,7 @@ use App\Http\Controllers\Cms\Controllermaster;
 use Illuminate\Http\Request;
 use App\Models\Data\Datasurvey;
 use App\Models\Master\Umur;
+use App\Models\Master\Kerja;
 use App\Models\Master\Sekolah;
 use App\Models\Master\Mspertanyaan;
 use Session;
@@ -51,6 +52,15 @@ class HasilsurveyController extends Controllermaster
             array(
                 'label' => 'PENDIDIKAN',
                 'field' => 'dataPendidikan',
+                'type' => 'text',
+                'width' => '8%',
+                'class' => 'center',
+                'rowspan' => 2
+
+            ),
+            array(
+                'label' => 'PEKERJAAN',
+                'field' => 'dataPekerjaan',
                 'type' => 'text',
                 'width' => '8%',
                 'class' => 'center',
@@ -192,6 +202,7 @@ class HasilsurveyController extends Controllermaster
                             'dataKelamin'=>$listdata[$idx]['dataKelamin'],                    
                             'dataUmur'=>$listdata[$idx]['dataUmur'],                    
                             'dataPendidikan'=>$listdata[$idx]['dataPendidikan'],                    
+                            'dataPekerjaan'=>$this->getPekerjaan($val->dataPekerjaan),                    
                             'dataJawab1'=>$val->dataJawab1,                    
                             'dataJawab2'=>$val->dataJawab2,                    
                             'dataJawab3'=>$val->dataJawab3,                    
@@ -221,12 +232,13 @@ class HasilsurveyController extends Controllermaster
             }
 
             $result[] = array(
-                        'dataId'=>0,                    
+                        'dataId'=>-1,                    
                         'compId'=>1,                    
                         'dataNama'=>'&nbsp;',                    
                         'dataKelamin'=>'&nbsp;',                    
                         'dataUmur'=>'&nbsp;',                    
                         'dataPendidikan'=>'&nbsp;',                    
+                        'dataPekerjaan'=>'&nbsp;',                    
                         'dataJawab1'=>'&nbsp;',                    
                         'dataJawab2'=>'&nbsp;',                    
                         'dataJawab3'=>'&nbsp;',                    
@@ -246,6 +258,7 @@ class HasilsurveyController extends Controllermaster
                         'dataKelamin'=>'&nbsp;',                    
                         'dataUmur'=>'&nbsp;',                    
                         'dataPendidikan'=>'&nbsp;',                    
+                        'dataPekerjaan'=>'&nbsp;',                    
                         'dataJawab1'=>$tJawab1,                    
                         'dataJawab2'=>$tJawab2,                    
                         'dataJawab3'=>$tJawab3,                    
@@ -265,6 +278,7 @@ class HasilsurveyController extends Controllermaster
                         'dataKelamin'=>'&nbsp;',                    
                         'dataUmur'=>'&nbsp;',                    
                         'dataPendidikan'=>'&nbsp;',                    
+                        'dataPekerjaan'=>'&nbsp;',                    
                         'dataJawab1'=>number_format($tJawab1/$idx,2),                    
                         'dataJawab2'=>number_format($tJawab2/$idx,2),                    
                         'dataJawab3'=>number_format($tJawab3/$idx,2),                    
@@ -318,6 +332,11 @@ class HasilsurveyController extends Controllermaster
         }
 
         return $result;
+    }
+
+    public function getPekerjaan($idx){
+        $res = Kerja::select('*')->where('kerjaId','=',$idx)->get();
+        return !empty($res[0]->kerjaNama)?$res[0]->kerjaNama:'';
     }
 
     public function getPertanyaan($idx){

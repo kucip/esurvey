@@ -9,6 +9,7 @@ use App\Models\Master\Layanan;
 use App\Models\Master\Sekolah;
 use App\Models\Master\Unit;
 use App\Models\Master\Mspertanyaan;
+use App\Models\Master\Kerja;
 use Session;
 class WebController extends BaseController {
 
@@ -18,6 +19,7 @@ class WebController extends BaseController {
         $pendidikan = new Sekolah;
         $unit = new Unit;
         $pertanyaan = new Mspertanyaan;
+        $kerja = new Kerja;
         $compId = 1;
 
         $data = array('umur'=>$umur->get(),
@@ -25,6 +27,7 @@ class WebController extends BaseController {
                       'layanan'=>$layanan->get(),
                       'unit'=>$unit->get(),
                       'pertanyaan'=>$pertanyaan->get(),
+                      'kerja'=>$kerja->get(),
                       'compId' => $compId,
                      );
 

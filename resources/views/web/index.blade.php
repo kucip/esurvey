@@ -88,6 +88,17 @@
                       </div>
                       <div class="col-lg-6 col-md-6">
                         <div class="form-group mb-30">
+                          <label class="font-sm color-text-mutted mb-10">PEKERJAAN</label>
+                          <select class="form-control" id="kerja">
+                              <option value="">-PILIH-</option>
+                              @foreach($kerja as $val)
+                                  <option value="{{$val->kerjaId}}">{{$val->kerjaNama}}</option>                                
+                              @endforeach
+                          </select>
+                        </div>
+                      </div>
+                      <div class="col-lg-6 col-md-6">
+                        <div class="form-group mb-30">
                           <label class="font-sm color-text-mutted mb-10">LAYANAN</label>
                           <select class="form-control" id="layanan">
                               <option value="">-PILIH-</option>
@@ -182,6 +193,7 @@
         var alamat=document.getElementById("alamat").value;
         var umur=document.getElementById("umur").value;
         var pendidikan=document.getElementById("pendidikan").value;
+        var kerja=document.getElementById("kerja").value;
         var layanan=document.getElementById("layanan").value;
         var unit=document.getElementById("unitkerja").value;
 
@@ -206,6 +218,11 @@
 
         if(pendidikan==''){
             txt +='- Isian < pendidikan > masih kosong !!!<br>';
+            status = true;
+        }
+
+        if(kerja==''){
+            txt +='- Isian < pekerjaan > masih kosong !!!<br>';
             status = true;
         }
 
@@ -237,6 +254,7 @@
         var alamat=document.getElementById("alamat").value;
         var umur=document.getElementById("umur").value;
         var pendidikan=document.getElementById("pendidikan").value;
+        var kerja=document.getElementById("kerja").value;
         var layanan=document.getElementById("layanan").value;
         var unit=document.getElementById("unitkerja").value;
         var saran=document.getElementById("saran").value;
@@ -248,6 +266,7 @@
             postData.dataAlamat = alamat;
             postData.dataUmur = umur;
             postData.dataPendidikan = pendidikan;
+            postData.dataPekerjaan = kerja;
             postData.dataLayanan = layanan;
             postData.dataUnit = unit;
             postData.dataSaran = saran;
