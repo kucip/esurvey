@@ -242,7 +242,7 @@ class HasilsurveyController extends Controllermaster
             $result[] = array(
                         'dataId'=>0,                    
                         'compId'=>1,                    
-                        'dataNama'=>'TOTAL',                    
+                        'dataNama'=>'TOTAL  ('.$idx.' Responden)',                    
                         'dataKelamin'=>'&nbsp;',                    
                         'dataUmur'=>'&nbsp;',                    
                         'dataPendidikan'=>'&nbsp;',                    
