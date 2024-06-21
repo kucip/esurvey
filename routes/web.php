@@ -54,4 +54,5 @@ Route::resource('savesurvey', App\Http\Controllers\Cms\Data\DatasurveyController
 Route::resource('graph', App\Http\Controllers\Cms\Data\GrafikallController::class);
 Route::resource('kritik', App\Http\Controllers\Cms\Data\KritikController::class);
 Route::resource('hasilsurvey', App\Http\Controllers\Cms\Data\HasilsurveyController::class);
+Route::resource('demografi', App\Http\Controllers\Cms\Data\DemografiController::class);
 
