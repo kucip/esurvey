@@ -7,20 +7,17 @@
 
 <div class="row">
   <div class="col-md-12">
-    @csrf
     <input type="hidden" name="dataall" id="dataall" value="{{$listdata}}">
-
     <div class="card">
       <div class="card-header header-elements-inline">
         <h5 class="card-title">{{$data['page_tittle']??''}}</h5>
       </div>
     </div>
-
-    <div id="listtanya"></div>
-
   </div>
 </div>
-
+<div class="row">
+  <div class="col-md-12" id="listtanya"></div>
+</div>
 
 <script type="text/javascript">
 $(document).ready(function() {
@@ -34,10 +31,9 @@ function listPertanyaan(data){
         result +='\
                   <div class="card">\
                     <div class="card-header header-elements-inline">\
-                      <h5>'+data[i].surPertanyaan+'</h5>\
+                        <h5>'+data[i].surPertanyaan+'</h5>\
                     </div>\
-                    <div class="card-body"><div class="chart has-fixed-height" id="graph'+i+'"></div>\
-                    </div>\
+                    <div class="chart has-fixed-height" id="graph'+i+'"></div>\
                   </div>\
               ';
     }
@@ -46,20 +42,14 @@ function listPertanyaan(data){
     setTimeout(function(){
         setGraphData(data);
     },1000);
-
-    // console.log(data);
 }
 
 function setGraphData(data){
-// $(function () {
-   console.log(data);
    for(var i=0;i<data.length;i++){
-
         var chartDom = document.getElementById('graph'+i);
         var myChart = echarts.init(chartDom);
         var option;
         var dataJ=data[i];
-
         option = {
           xAxis: {
             type: 'category',
@@ -75,11 +65,8 @@ function setGraphData(data){
             }
           ]
         };
-
         myChart.setOption(option);
    }
-
-
 }
 
 </script>
