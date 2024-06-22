@@ -27,13 +27,13 @@ class MspertanyaanController extends Controllermaster
                 'type' => 'text',
                 'width' => ''
             ),
-            // array(
-            //     'label' => 'STATUS',
-            //     'field' => 'surTayang2',
-            //     'type' => 'text',
-            //     'width' => '10%',
-            //     'class' => 'center'
-            // ),
+            array(
+                'label' => 'UNSUR',
+                'field' => 'surUnsur',
+                'type' => 'text',
+                'width' => '20%',
+                'class' => 'center'
+            ),
 
         );
 
@@ -51,6 +51,13 @@ class MspertanyaanController extends Controllermaster
                 'placeholder' => 'Masukan Pertanyaan',
                 'keterangan' => '* Wajib Diisi',
                 // 'col'=>6
+            ),
+            array(
+                'label' => 'UNSUR',
+                'field' => 'surUnsur',
+                'type' => 'text',
+                'placeholder' => 'Unsur Pertanyaan',
+                'keterangan' => '* Wajib Diisi',
             ),
             array(
                 'label' => 'JAWABAN 1',

@@ -11,5 +11,5 @@ class Mspertanyaan extends Model
 
     protected $table = 'mssurvey';
     protected $primaryKey = 'surId';
-    protected $fillable = ['compId','surPertanyaan','surOpt1','surOpt2','surOpt3','surOpt4','surOpt5','surBobot1','surBobot2','surBobot3','surBobot4','surBobot5'];
+    protected $fillable = ['compId','surPertanyaan','surOpt1','surOpt2','surOpt3','surOpt4','surOpt5','surUnsur','surBobot1','surBobot2','surBobot3','surBobot4','surBobot5'];
 }

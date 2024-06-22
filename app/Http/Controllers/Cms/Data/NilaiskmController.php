@@ -12,7 +12,7 @@ use App\Models\Master\Mspertanyaan;
 use Session;
 use Input;
 
-class HasilsurveyController extends Controllermaster
+class NilaiskmController extends Controllermaster
 {
 
     public function __construct(){
@@ -318,6 +318,7 @@ class HasilsurveyController extends Controllermaster
         }
     }
 
+
     public function getPekerjaan($idx){
         $res = Kerja::select('*')->where('kerjaId','=',$idx)->get();
         return !empty($res[0]->kerjaNama)?$res[0]->kerjaNama:'';
@@ -337,5 +338,6 @@ class HasilsurveyController extends Controllermaster
         $res = Sekolah::select('sekLevel')->where('sekId','=',$idx)->get();
         return !empty($res[0]->sekLevel)?$res[0]->sekLevel:'';
     }
+
 
 }
