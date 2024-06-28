@@ -55,4 +55,6 @@ Route::resource('graph', App\Http\Controllers\Cms\Data\GrafikallController::clas
 Route::resource('kritik', App\Http\Controllers\Cms\Data\KritikController::class);
 Route::resource('hasilsurvey', App\Http\Controllers\Cms\Data\HasilsurveyController::class);
 Route::resource('demografi', App\Http\Controllers\Cms\Data\DemografiController::class);
+Route::resource('layananpublik', App\Http\Controllers\Cms\Data\LayananpublikController::class);
+Route::resource('ikmperunsur', App\Http\Controllers\Cms\Data\SkmperunsurController::class);
 
