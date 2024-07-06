@@ -10,6 +10,7 @@ use App\Models\Master\Sekolah;
 use App\Models\Master\Mspertanyaan;
 use App\Models\Master\Kerja;
 use App\Models\Master\Layanan;
+use App\Models\Master\Unit;
 use Session;
 use Input;
 use DB;
@@ -19,8 +20,9 @@ class SkmperunsurController extends Controllermaster
     public function __construct(){
         $this->model = new Datasurvey;
         $this->layanan = new Layanan;
+        $this->unit = new Unit;
         $this->primaryKey = 'dataId';
-        $this->mainroute = 'skmperunsur';
+        $this->mainroute = 'ikmperunsur';
         $this->mandatory = array(
             'compId' => 'required'
         );
@@ -41,22 +43,6 @@ class SkmperunsurController extends Controllermaster
                 'class' => 'center',
                 'colspan'=>9,
             ),
-            // array(
-            //     'label' => 'IKM',
-            //     'field' => 'ikm',
-            //     'type' => 'text',
-            //     'width' => '8%',
-            //     'class' => 'center',
-            //     'rowspan' => 2
-            // ),
-            // array(
-            //     'label' => 'KATEGORI',
-            //     'field' => 'kategori',
-            //     'type' => 'text',
-            //     'width' => '8%',
-            //     'class' => 'center',
-            //     'rowspan' => 2
-            // ),
         );
 
         $this->grid2 = array(
@@ -140,7 +126,34 @@ class SkmperunsurController extends Controllermaster
 
             $compId = Session::get('compId');
             $compStatus = Session::get('compStatus');
+
+
+            $bulan=!empty($_GET['bulan'])?$_GET['bulan']:'0';
+            $tahun=!empty($_GET['tahun'])?$_GET['tahun']:'0';
+
+            $unit=!empty($_GET['unit'])?$_GET['unit']:'%';
+
+            $selected=array(
+                         'bulan'=>$bulan,   
+                         'tahun'=>$tahun,   
+                         'unit'=>$unit,   
+                      );
+
+            if($bulan==0 and $tahun==0){
+                $jumdata=$this->model
+                        ->where('dataUnit','like',$unit)
+                        ->count();
+            }else{
+                $jumdata=$this->model
+                        ->where(DB::raw('MONTH(created_at)'),'=',$bulan)
+                        ->where(DB::raw('YEAR(created_at)'),'=',$tahun)
+                        ->where('dataUnit','like',$unit)
+                        ->count();
+            }
+
+
             $listdata = $this->layanan->get();
+
 
             $idx=0;
             $tJawab1=0;
@@ -156,10 +169,9 @@ class SkmperunsurController extends Controllermaster
 
             $lastData=null;
             $result=array();
-            $jumdata=$this->model->count();
             foreach ($listdata as $key => $val) {
 
-                $data=$this->hitungLayanan($val->layId);
+                $data=$this->hitungLayanan($val->layId,$bulan,$tahun,$unit);
                 $jumlahData=$data->jumlahData;
                 if($jumlahData==0){ 
                     $jumlahData=1;
@@ -191,7 +203,8 @@ class SkmperunsurController extends Controllermaster
 
             }
 
-
+            if($idx==0) $idx=1;
+            
             $result[] = array(
                         'dataId'=>-1,                    
                         'compId'=>1,                    
@@ -285,7 +298,7 @@ class SkmperunsurController extends Controllermaster
                 'detail' => Session::get('compDetail'),
                 'name' => Session::get('name'),
                 'namelong' => Session::get('email'),
-                'page_tittle' => 'IKM Per Unsur Dari '.number_format($this->model->count()).' Responden',
+                'page_tittle' => 'IKM Per Unsur Dari '.number_format($jumdata).' Responden',
                 'page_active' => 'IKM Per Unsur',
                 'grid' => $this->grid,
                 'grid2' => $this->grid2,
@@ -293,6 +306,8 @@ class SkmperunsurController extends Controllermaster
                 'datagraph' => json_encode($datagraph),
                 'primaryKey' => $this->primaryKey,
                 'mainroute' => $this->mainroute,
+                'unit' => $this->unit::all(),
+                'selected' => $selected,
                 'compId' => $compId,
                 'code' => 0,
             );
@@ -301,20 +316,45 @@ class SkmperunsurController extends Controllermaster
         }
     }
 
-    public function hitungLayanan($idx){
-        $res = $this->model->select(DB::raw('count(*) as jumlahData'),
-                                    DB::raw('sum(dataJawab1) as jawab1'),
-                                    DB::raw('sum(dataJawab2) as jawab2'),
-                                    DB::raw('sum(dataJawab3) as jawab3'),
-                                    DB::raw('sum(dataJawab4) as jawab4'),
-                                    DB::raw('sum(dataJawab5) as jawab5'),
-                                    DB::raw('sum(dataJawab6) as jawab6'),
-                                    DB::raw('sum(dataJawab7) as jawab7'),
-                                    DB::raw('sum(dataJawab8) as jawab8'),
-                                    DB::raw('sum(dataJawab9) as jawab9'),
-                                )
-               ->where('dataLayanan','=',$idx)
-               ->get();
+    public function hitungLayanan($idx,$bulan,$tahun,$unit){
+
+
+            if($bulan==0 and $tahun==0){
+                $res = $this->model->select(DB::raw('count(*) as jumlahData'),
+                                            DB::raw('sum(dataJawab1) as jawab1'),
+                                            DB::raw('sum(dataJawab2) as jawab2'),
+                                            DB::raw('sum(dataJawab3) as jawab3'),
+                                            DB::raw('sum(dataJawab4) as jawab4'),
+                                            DB::raw('sum(dataJawab5) as jawab5'),
+                                            DB::raw('sum(dataJawab6) as jawab6'),
+                                            DB::raw('sum(dataJawab7) as jawab7'),
+                                            DB::raw('sum(dataJawab8) as jawab8'),
+                                            DB::raw('sum(dataJawab9) as jawab9'),
+                                        )
+                       ->where('dataLayanan','=',$idx)
+                       ->where('dataUnit','like',$unit)
+                       ->get();
+           }else{
+                $res = $this->model->select(DB::raw('count(*) as jumlahData'),
+                                            DB::raw('sum(dataJawab1) as jawab1'),
+                                            DB::raw('sum(dataJawab2) as jawab2'),
+                                            DB::raw('sum(dataJawab3) as jawab3'),
+                                            DB::raw('sum(dataJawab4) as jawab4'),
+                                            DB::raw('sum(dataJawab5) as jawab5'),
+                                            DB::raw('sum(dataJawab6) as jawab6'),
+                                            DB::raw('sum(dataJawab7) as jawab7'),
+                                            DB::raw('sum(dataJawab8) as jawab8'),
+                                            DB::raw('sum(dataJawab9) as jawab9'),
+                                        )
+                       ->where('dataLayanan','=',$idx)
+                        ->where(DB::raw('MONTH(created_at)'),'=',$bulan)
+                        ->where(DB::raw('YEAR(created_at)'),'=',$tahun)
+                        ->where('dataUnit','like',$unit)
+                       ->get();
+
+
+            }
+
         return $res[0];
     }
     public function getUnsurNama(){
@@ -337,7 +377,7 @@ class SkmperunsurController extends Controllermaster
     }
 
     public function getkategoriText($huruf){        
-        $res='';
+        $text='';
         if($huruf=='D'){
             $text='Tidak Baik';
         }elseif($huruf=='C'){

@@ -40,21 +40,6 @@
       <div class="col-sm-4">      
       </div>  
 
-      <div class="col-sm-2">
-        <label class="form-label" style="margin-top: 8px;margin-left: 20px;"><b>LAYANAN</b></label>
-      </div>
-      <div class="col-sm-6">
-        <div class="form-group">
-          <select name="filterLayanan" id="filterLayanan" class="form-control">
-            <option value="">--PILIH LAYANAN--</option>
-              @foreach($layanan as $key => $val)
-                <option value="{{$val->layId}}" @if($selected['layanan']==$val->layId) {{'selected'}} @endif >{{$val->layNama}}</option>
-              @endforeach
-          </select>
-        </div>
-      </div>
-      <div class="col-sm-4">      
-      </div>  
 
       <div class="col-sm-2">
         <label class="form-label" style="margin-top: 8px;margin-left: 20px;"><b>UNIT</b></label>
@@ -86,6 +71,7 @@
 </div>
 <p>&nbsp;<p>
 
+
 <div class="row">
   <div class="col-md-12">
     <!-- Basic layout-->
@@ -94,24 +80,17 @@
         <h5 class="card-title">{{$data['page_tittle']??''}}</h5>
         <div class="header-elements">
           <div class="list-icons">
-            <form action="/{{$mainroute}}" method="GET">
               <div class="form-group row">
                 <div class="input-group">
-                  <input type="text" name="search" id="search" value="{{$search ?? ''}}" class="form-control" placeholder="Search Here">
                   <span class="input-group-append">
-                    <span class="input-group-text"><i class="icon-search4"></i></span>
-                    <span class="input-group-text">
-                      <a class="list-icons-item" data-action="collapse"></a>
-                    </span>
+                    <button class="input-group-text" id="btnExport" onclick="exportReportToExcel(this)" ><i class="icon-file-excel"></i>&nbsp; Export ke Excel</button>
+                    <!-- <button id="btnExport" onclick="exportReportToExcel(this)">EXPORT REPORT</button> -->
                   </span>
                 </div>
               </div>
-            </form>
-            <!-- <a class="list-icons-item" data-action="collapse"></a>
-            <a class="list-icons-item" data-action="reload"></a> -->
-            <!-- <a class="list-icons-item" data-action="remove"></a> -->
           </div>
         </div>
+
       </div>
 
       @csrf
@@ -122,13 +101,17 @@
               <tr>
                 @php $cols = count($grid)+1; @endphp
                 @foreach($grid as $datagrid)
-                <th width="{{$datagrid['width']}}">{{$datagrid['label']}}</th>
+                <th width="{{$datagrid['width']}}" rowspan="{{$datagrid['rowspan'] ?? ''}}" colspan="{{$datagrid['colspan'] ?? ''}}">{{$datagrid['label']}}</th>
                 @endforeach
-                <th width="6%">WA</th>
+              </tr>
+              <tr>
+                @foreach($grid2 as $datagrid2)
+                <th width="{{$datagrid2['width']}}">{{$datagrid2['label']}}</th>
+                @endforeach
               </tr>
             </thead>
             <tbody>
-              @if(!$listdata->isEmpty())
+              @if(count($listdata)>0)
               @php
               $rowIndex=-1;
               @endphp
@@ -136,29 +119,39 @@
               @foreach($listdata as $key => $data)
               <tr>
                 @php
-                $dataall=json_encode($data);
-                $pmKey=$data->$primaryKey;
-                $detail=$data->dataDetail;
-                $dataSaran=$data->dataSaran;
                 $rowIndex ++;
                 @endphp
 
                 @foreach($grid as $datagrid)
-                @php
-                $field=$datagrid['field'];
-                $value=$data->$field;
-                @endphp
-                <td width="{{$datagrid['width'] ?? ''}}" class="{{$datagrid['class'] ?? ''}}">{{$value}} </td>
+                  @php
+                    $field=$datagrid['field'];
+                    $value=!empty($data[$field])?$data[$field]:'';
+                    $col=isset($datagrid['colspan'])?$datagrid['colspan']:'';
+                  @endphp
+                  @if($col!='' and $col > 0)
+                    @foreach($grid2 as $datagrid2)
+                      @php
+                        $field2=$datagrid2['field'];
+                        $value2=!empty($data[$field2])?$data[$field2]:'';
+                      @endphp
+                      @if($value2!='')
+                          @if($value2=='&nbsp;')
+                            <td width="{{$datagrid2['width'] ?? ''}}" class="{{$datagrid2['class'] ?? ''}}">&nbsp;</td>
+                          @else
+                            <td width="{{$datagrid2['width'] ?? ''}}" class="{{$datagrid2['class'] ?? ''}}">{{$value2}} </td>
+                          @endif
+                      @endif
+                    @endforeach
+                  @endif
+                  
+                  @if($value!='')
+                    @if($value=='&nbsp;')
+                      <td width="{{$datagrid['width'] ?? ''}}" class="{{$datagrid['class'] ?? ''}}"></td>
+                    @else
+                      <td width="{{$datagrid['width'] ?? ''}}" class="{{$datagrid['class'] ?? ''}}">{{$value}} </td>
+                    @endif
+                  @endif
                 @endforeach
-                <td>
-                  <center>
-                    <input type="hidden" id="dataall{{$pmKey}}" name="dataall{{$pmKey}}" value="{{$dataall}}">
-                    <input type="hidden" id="kritikSaran{{$pmKey}}" name="kritikSaran{{$pmKey}}" value="{{$dataSaran}}">
-                    <input type="hidden" id="gridDetail{{$pmKey}}" name="gridDetail{{$pmKey}}" value="{{$detail}}">
-                    <input type="hidden" id="gridPmKey{{$rowIndex}}" name="gridPmKey{{$rowIndex}}" value="{{$pmKey}}">
-                    <a onclick="grid_delete({{$pmKey}})" style="color: red; padding:4px;max-width: 30px;max-height: 30px;"><i class="icon-bubbles8" aria-hidden="true"></i></a>
-                  </center>
-                </td>
               </tr>
               @endforeach
               @else
@@ -169,12 +162,7 @@
               </tr>
               @endif
             </tbody>
-
           </table>
-        </div>
-        <br>
-        <div class="text-right">
-          {{ $listdata->appends(array('search' => $search ?? ''))->links('pagination::bootstrap-4') }}
         </div>
       </div>
 
@@ -185,67 +173,32 @@
   </div>
 </div>
 
-<div class="row">
-  
-  <div id="modal_theme_info" class="modal fade">
-    <div class="modal-dialog modal-xl">
-      <div class="modal-content" >
-        <div class="modal-header bg-info">
-          <h6 class="modal-title">Detail Survey</h6>
-        </div>
-        <div class="col-md-12 modal-body">
-          <div class="row">
-              <div class="col-md-1 text-semibold">&nbsp;</div>            
-              <div class="col-md-7 text-semibold"><h6>Pertanyaan</h6></div>            
-              <div class="col-md-4 text-semibold"><h6>Jawaban</h6></div>            
-          </div>
-          <div id="isiDetail"></div>
-          <br>
-          <div class="row">
-              <div class="col-md-1 text-semibold">&nbsp;</div>            
-              <div class="col-md-11 text-semibold"><h6>Kritik & Saran</h6></div>            
-          </div>
-          <div class="row">
-              <div class="col-md-1 text-semibold">&nbsp;</div>            
-              <div class="col-md-11 text-semibold" id="isiSaran" style="text-align: justify;padding-right: 20px;"></div>            
-          </div>
 
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-info" data-dismiss="modal">Tutup</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-</div>
-
-<button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#modal_theme_info" id="showmodal" style="display: none;">Launch</button>
 <script type="text/javascript">
-  function grid_delete(id) {
-    var dataall=JSON.parse(document.getElementById('dataall'+id).value);
-    var saran=document.getElementById('kritikSaran'+id).value;
-    var phone=dataall.dataHp;
-    var text="BAKAMLA RI - SPKKL Kupang \n Terima kasih telah berpartisipasi dalam survey kinerja kami. Kritik dan Saran anda akan sangat bergunana untuk perbaikan pelayanan kami."
-    // console.log(dataall);
-    window.open("https://wa.me/+62"+phone+"?text="+text,"_blank");
-    //https://wa.me/whatsappphonenumber?text=urlencodedtext
 
-  }
+function exportReportToExcel() {
+  let table = document.getElementsByTagName("table"); // you can use document.getElementById('tableId') as well by providing id to the table tag
+  TableToExcel.convert(table[0], { // html code may contain multiple tables so here we are refering to 1st table tag
+    name: 'data-hasil-survey.xlsx', // fileName you could use any name
+    sheet: {
+      name: 'Sheet 1' // sheetName
+    }
+  });
+}
 
 function refresh(){
 
     var bulan = document.getElementById('filterBulan').value;
     var tahun = document.getElementById('filterTahun').value;
-    var layanan = document.getElementById('filterLayanan').value;
     var unit = document.getElementById('filterUnit').value;
 
-    var url='{{$mainroute}}?'+'bulan='+bulan+'&tahun='+tahun+'&layanan='+layanan+'&unit='+unit;
+    var url='{{$mainroute}}?'+'bulan='+bulan+'&tahun='+tahun+'&unit='+unit;
 
     window.open(url,'_self');
 }
 
 </script>
+
 
 
 <x-cms_templete_bottom />

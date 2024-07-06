@@ -8,13 +8,18 @@ use App\Models\Data\Datasurvey;
 use App\Models\Master\Umur;
 use App\Models\Master\Sekolah;
 use App\Models\Master\Mspertanyaan;
+use App\Models\Master\Layanan;
+use App\Models\Master\Unit;
 use Session;
 use Input;
+use DB;
 
 class KritikController extends Controllermaster
 {
     public function __construct(){
         $this->model = new Datasurvey;
+        $this->layanan = new Layanan;
+        $this->unit = new Unit;
         $this->primaryKey = 'dataId';
         $this->mainroute = 'kritik';
         $this->mandatory = array(
@@ -59,31 +64,113 @@ class KritikController extends Controllermaster
             $compId = Session::get('compId');
             $compStatus = Session::get('compStatus');
 
-            $search = !empty($_GET['search']) ? $_GET['search'] : '';
-            if($compStatus == 1){
-                if ($search == '') {
-                    $listdata = $this->model
-                        ->latest()
-                        ->paginate(15);
-                } else {
-                    $listdata = $this->model
-                        ->where('dataNama', 'like', '%' . $search . '%')
-                        ->paginate(15);
+            $bulan=!empty($_GET['bulan'])?$_GET['bulan']:'0';
+            $tahun=!empty($_GET['tahun'])?$_GET['tahun']:'0';
+
+            $layanan=!empty($_GET['layanan'])?$_GET['layanan']:'%';
+            $unit=!empty($_GET['unit'])?$_GET['unit']:'%';
+
+            $selected=array(
+                         'bulan'=>$bulan,   
+                         'tahun'=>$tahun,   
+                         'layanan'=>$layanan,   
+                         'unit'=>$unit,   
+                      );
+
+            if($bulan==0 and $tahun==0){
+                $jumdata=$this->model
+                        ->where('dataLayanan','like',$layanan)
+                        ->where('dataUnit','like',$unit)
+                        ->count();
+
+                $search = !empty($_GET['search']) ? $_GET['search'] : '';
+                if($compStatus == 1){
+                    if ($search == '') {
+                        $listdata = $this->model
+                            ->where('dataLayanan','like',$layanan)
+                            ->where('dataUnit','like',$unit)
+                            ->latest()
+                            ->paginate(15);
+                    } else {
+                        $listdata = $this->model
+                            ->where('dataLayanan','like',$layanan)
+                            ->where('dataUnit','like',$unit)
+                            ->where('dataNama', 'like', '%' . $search . '%')
+                            ->paginate(15);
+                    }
+                }else{
+                    if ($search == '') {
+                        $listdata = $this->model
+                            ->latest()
+                            ->where('dataLayanan','like',$layanan)
+                            ->where('dataUnit','like',$unit)
+                            ->where('compId', '=', $compId)
+                            ->paginate(15);
+                    } else {
+                        $listdata = $this->model
+                            ->latest()
+                            ->where('dataNama', 'like', '%' . $search . '%')
+                            ->where('compId', '=', $compId)
+                            ->where('dataLayanan','like',$layanan)
+                            ->where('dataUnit','like',$unit)
+                            ->paginate(15);
+                    }
                 }
+
             }else{
-                if ($search == '') {
-                    $listdata = $this->model
-                        ->latest()
-                        ->where('compId', '=', $compId)
-                        ->paginate(15);
-                } else {
-                    $listdata = $this->model
-                        ->latest()
-                        ->where('dataNama', 'like', '%' . $search . '%')
-                        ->where('compId', '=', $compId)
-                        ->paginate(15);
+                $jumdata=$this->model
+                        ->where(DB::raw('MONTH(created_at)'),'=',$bulan)
+                        ->where(DB::raw('YEAR(created_at)'),'=',$tahun)
+                        ->where('dataLayanan','like',$layanan)
+                        ->where('dataUnit','like',$unit)
+                        ->count();
+
+
+                $search = !empty($_GET['search']) ? $_GET['search'] : '';
+                if($compStatus == 1){
+                    if ($search == '') {
+                        $listdata = $this->model
+                            ->where(DB::raw('MONTH(created_at)'),'=',$bulan)
+                            ->where(DB::raw('YEAR(created_at)'),'=',$tahun)
+                            ->where('dataLayanan','like',$layanan)
+                            ->where('dataUnit','like',$unit)
+                            ->latest()
+                            ->paginate(15);
+                    } else {
+                        $listdata = $this->model
+                            ->where(DB::raw('MONTH(created_at)'),'=',$bulan)
+                            ->where(DB::raw('YEAR(created_at)'),'=',$tahun)
+                            ->where('dataLayanan','like',$layanan)
+                            ->where('dataUnit','like',$unit)
+                            ->where('dataNama', 'like', '%' . $search . '%')
+                            ->paginate(15);
+                    }
+                }else{
+                    if ($search == '') {
+                        $listdata = $this->model
+                            ->latest()
+                            ->where(DB::raw('MONTH(created_at)'),'=',$bulan)
+                            ->where(DB::raw('YEAR(created_at)'),'=',$tahun)
+                            ->where('dataLayanan','like',$layanan)
+                            ->where('dataUnit','like',$unit)
+                            ->where('compId', '=', $compId)
+                            ->paginate(15);
+                    } else {
+                        $listdata = $this->model
+                            ->latest()
+                            ->where(DB::raw('MONTH(created_at)'),'=',$bulan)
+                            ->where(DB::raw('YEAR(created_at)'),'=',$tahun)
+                            ->where('dataLayanan','like',$layanan)
+                            ->where('dataUnit','like',$unit)
+                            ->where('dataNama', 'like', '%' . $search . '%')
+                            ->where('compId', '=', $compId)
+                            ->paginate(15);
+                    }
                 }
             }
+
+
+
 
             $data = array(
                 'authmenu' => $this->getusermenu(),
@@ -98,6 +185,9 @@ class KritikController extends Controllermaster
                 'listdata' => $listdata,
                 'primaryKey' => $this->primaryKey,
                 'mainroute' => $this->mainroute,
+                'layanan' => $this->layanan::all(),
+                'unit' => $this->unit::all(),
+                'selected' => $selected,
                 'compId' => $compId,
                 'code' => 0,
             );

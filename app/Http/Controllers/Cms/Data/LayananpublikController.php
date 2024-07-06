@@ -10,6 +10,7 @@ use App\Models\Master\Sekolah;
 use App\Models\Master\Mspertanyaan;
 use App\Models\Master\Kerja;
 use App\Models\Master\Layanan;
+use App\Models\Master\Unit;
 use Session;
 use Input;
 use DB;
@@ -19,6 +20,7 @@ class LayananpublikController extends Controllermaster
     public function __construct(){
         $this->model = new Datasurvey;
         $this->layanan = new Layanan;
+        $this->unit = new Unit;
         $this->primaryKey = 'dataId';
         $this->mainroute = 'layananpublik';
         $this->mandatory = array(
@@ -138,6 +140,34 @@ class LayananpublikController extends Controllermaster
             return view('login', $data);
         } else {
 
+
+            $bulan=!empty($_GET['bulan'])?$_GET['bulan']:'0';
+            $tahun=!empty($_GET['tahun'])?$_GET['tahun']:'0';
+
+            $layanan=!empty($_GET['layanan'])?$_GET['layanan']:'%';
+            $unit=!empty($_GET['unit'])?$_GET['unit']:'%';
+
+            $selected=array(
+                         'bulan'=>$bulan,   
+                         'tahun'=>$tahun,   
+                         'layanan'=>$layanan,   
+                         'unit'=>$unit,   
+                      );
+
+            if($bulan==0 and $tahun==0){
+                $jumdata=$this->model
+                        ->where('dataLayanan','like',$layanan)
+                        ->where('dataUnit','like',$unit)
+                        ->count();
+            }else{
+                $jumdata=$this->model
+                        ->where(DB::raw('MONTH(created_at)'),'=',$bulan)
+                        ->where(DB::raw('YEAR(created_at)'),'=',$tahun)
+                        ->where('dataLayanan','like',$layanan)
+                        ->where('dataUnit','like',$unit)
+                        ->count();
+            }
+
             $compId = Session::get('compId');
             $compStatus = Session::get('compStatus');
             $listdata = $this->layanan->get();
@@ -156,10 +186,9 @@ class LayananpublikController extends Controllermaster
 
             $lastData=null;
             $result=array();
-            $jumdata=$this->model->count();
             foreach ($listdata as $key => $val) {
 
-                $data=$this->hitungLayanan($val->layId);
+                $data=$this->hitungLayanan($val->layId,$bulan,$tahun,$unit);
                 $jumlahData=$data->jumlahData;
                 if($jumlahData==0){ 
                     $jumlahData=1;
@@ -210,6 +239,8 @@ class LayananpublikController extends Controllermaster
 
             }
 
+            if($idx==0) $idx=1;
+
             $result[] = array(
                         'dataId'=>-1,                    
                         'compId'=>1,                    
@@ -257,35 +288,62 @@ class LayananpublikController extends Controllermaster
                 'detail' => Session::get('compDetail'),
                 'name' => Session::get('name'),
                 'namelong' => Session::get('email'),
-                'page_tittle' => 'Layanan Publik Dari '.number_format($this->model->count()).' Responden',
+                'page_tittle' => 'Layanan Publik Dari '.number_format($jumdata).' Responden',
                 'page_active' => 'Layanan Publik',
                 'grid' => $this->grid,
                 'grid2' => $this->grid2,
                 'listdata' => $result,
                 'primaryKey' => $this->primaryKey,
                 'mainroute' => $this->mainroute,
+                'unit' => $this->unit::all(),
+                'selected' => $selected,
                 'compId' => $compId,
                 'code' => 0,
             );
 
-            return view('cms.Survey.hasilsurvey', $data)->with('data', $data);
+            return view('cms.Survey.layananpublik', $data)->with('data', $data);
         }
     }
 
-    public function hitungLayanan($idx){
-        $res = $this->model->select(DB::raw('count(*) as jumlahData'),
-                                    DB::raw('sum(dataJawab1) as jawab1'),
-                                    DB::raw('sum(dataJawab2) as jawab2'),
-                                    DB::raw('sum(dataJawab3) as jawab3'),
-                                    DB::raw('sum(dataJawab4) as jawab4'),
-                                    DB::raw('sum(dataJawab5) as jawab5'),
-                                    DB::raw('sum(dataJawab6) as jawab6'),
-                                    DB::raw('sum(dataJawab7) as jawab7'),
-                                    DB::raw('sum(dataJawab8) as jawab8'),
-                                    DB::raw('sum(dataJawab9) as jawab9'),
-                                )
-               ->where('dataLayanan','=',$idx)
-               ->get();
+    public function hitungLayanan($idx,$bulan,$tahun,$unit){
+
+
+        if($bulan==0 and $tahun==0){
+            $res = $this->model->select(DB::raw('count(*) as jumlahData'),
+                                        DB::raw('sum(dataJawab1) as jawab1'),
+                                        DB::raw('sum(dataJawab2) as jawab2'),
+                                        DB::raw('sum(dataJawab3) as jawab3'),
+                                        DB::raw('sum(dataJawab4) as jawab4'),
+                                        DB::raw('sum(dataJawab5) as jawab5'),
+                                        DB::raw('sum(dataJawab6) as jawab6'),
+                                        DB::raw('sum(dataJawab7) as jawab7'),
+                                        DB::raw('sum(dataJawab8) as jawab8'),
+                                        DB::raw('sum(dataJawab9) as jawab9'),
+                                    )
+                   ->where('dataLayanan','=',$idx)
+                    ->where('dataUnit','like',$unit)
+                   ->get();
+        }else{
+
+            $res = $this->model->select(DB::raw('count(*) as jumlahData'),
+                                        DB::raw('sum(dataJawab1) as jawab1'),
+                                        DB::raw('sum(dataJawab2) as jawab2'),
+                                        DB::raw('sum(dataJawab3) as jawab3'),
+                                        DB::raw('sum(dataJawab4) as jawab4'),
+                                        DB::raw('sum(dataJawab5) as jawab5'),
+                                        DB::raw('sum(dataJawab6) as jawab6'),
+                                        DB::raw('sum(dataJawab7) as jawab7'),
+                                        DB::raw('sum(dataJawab8) as jawab8'),
+                                        DB::raw('sum(dataJawab9) as jawab9'),
+                                    )
+                   ->where('dataLayanan','=',$idx)
+                    ->where(DB::raw('MONTH(created_at)'),'=',$bulan)
+                    ->where(DB::raw('YEAR(created_at)'),'=',$tahun)
+                    ->where('dataUnit','like',$unit)
+                   ->get();
+
+        }
+
         return $res[0];
     }
 

@@ -9,14 +9,18 @@ use App\Models\Master\Umur;
 use App\Models\Master\Kerja;
 use App\Models\Master\Sekolah;
 use App\Models\Master\Mspertanyaan;
+use App\Models\Master\Layanan;
+use App\Models\Master\Unit;
 use Session;
 use Input;
-
+use DB;
 class HasilsurveyController extends Controllermaster
 {
 
     public function __construct(){
         $this->model = new Datasurvey;
+        $this->layanan = new Layanan;
+        $this->unit = new Unit;
         $this->primaryKey = 'dataId';
         $this->mainroute = 'hasilsurvey';
         $this->mandatory = array(
@@ -166,7 +170,47 @@ class HasilsurveyController extends Controllermaster
 
             $compId = Session::get('compId');
             $compStatus = Session::get('compStatus');
-            $listdata = $this->model->get();
+
+
+
+            $bulan=!empty($_GET['bulan'])?$_GET['bulan']:'0';
+            $tahun=!empty($_GET['tahun'])?$_GET['tahun']:'0';
+
+            $layanan=!empty($_GET['layanan'])?$_GET['layanan']:'%';
+            $unit=!empty($_GET['unit'])?$_GET['unit']:'%';
+
+            $selected=array(
+                         'bulan'=>$bulan,   
+                         'tahun'=>$tahun,   
+                         'layanan'=>$layanan,   
+                         'unit'=>$unit,   
+                      );
+
+            if($bulan==0 and $tahun==0){
+                $jumdata=$this->model
+                        ->where('dataLayanan','like',$layanan)
+                        ->where('dataUnit','like',$unit)
+                        ->count();
+                $listdata = $this->model
+                        ->where('dataLayanan','like',$layanan)
+                        ->where('dataUnit','like',$unit)
+                        ->get();
+            }else{
+                $jumdata=$this->model
+                        ->where(DB::raw('MONTH(created_at)'),'=',$bulan)
+                        ->where(DB::raw('YEAR(created_at)'),'=',$tahun)
+                        ->where('dataLayanan','like',$layanan)
+                        ->where('dataUnit','like',$unit)
+                        ->count();
+                $listdata = $this->model
+                        ->where(DB::raw('MONTH(created_at)'),'=',$bulan)
+                        ->where(DB::raw('YEAR(created_at)'),'=',$tahun)
+                        ->where('dataLayanan','like',$layanan)
+                        ->where('dataUnit','like',$unit)
+                        ->get();
+            }
+
+
 
             $idx=0;
             $tJawab1=0;
@@ -230,6 +274,8 @@ class HasilsurveyController extends Controllermaster
                 $lastData = $val;
                 $idx++;
             }
+
+            if($idx==0) $idx=1;
 
             $result[] = array(
                         'dataId'=>-1,                    
@@ -310,6 +356,9 @@ class HasilsurveyController extends Controllermaster
                 'listdata' => $result,
                 'primaryKey' => $this->primaryKey,
                 'mainroute' => $this->mainroute,
+                'layanan' => $this->layanan::all(),
+                'unit' => $this->unit::all(),
+                'selected' => $selected,
                 'compId' => $compId,
                 'code' => 0,
             );

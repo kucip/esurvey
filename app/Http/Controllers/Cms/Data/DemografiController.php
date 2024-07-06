@@ -9,6 +9,8 @@ use App\Models\Master\Umur;
 use App\Models\Master\Sekolah;
 use App\Models\Master\Mspertanyaan;
 use App\Models\Master\Kerja;
+use App\Models\Master\Layanan;
+use App\Models\Master\Unit;
 use Session;
 use Input;
 use DB;
@@ -18,6 +20,8 @@ class DemografiController extends Controllermaster
 
     public function __construct(){
         $this->model = new Datasurvey;
+        $this->layanan = new Layanan;
+        $this->unit = new Unit;
         $this->primaryKey = 'dataId';
         $this->mainroute = 'demografi';
         $this->mandatory = array(
@@ -69,8 +73,37 @@ class DemografiController extends Controllermaster
             $compId = Session::get('compId');
             $compStatus = Session::get('compStatus');
 
-            $totalResponden=$this->model->count();            
-            $jumlah=$this->hitungKelamin(1);
+
+            $bulan=!empty($_GET['bulan'])?$_GET['bulan']:'0';
+            $tahun=!empty($_GET['tahun'])?$_GET['tahun']:'0';
+
+            $layanan=!empty($_GET['layanan'])?$_GET['layanan']:'%';
+            $unit=!empty($_GET['unit'])?$_GET['unit']:'%';
+
+            $selected=array(
+                         'bulan'=>$bulan,   
+                         'tahun'=>$tahun,   
+                         'layanan'=>$layanan,   
+                         'unit'=>$unit,   
+                      );
+
+            if($bulan==0 and $tahun==0){
+                $totalResponden=$this->model
+                        ->where('dataLayanan','like',$layanan)
+                        ->where('dataUnit','like',$unit)
+                        ->count();
+            }else{
+                $totalResponden=$this->model
+                        ->where(DB::raw('MONTH(created_at)'),'=',$bulan)
+                        ->where(DB::raw('YEAR(created_at)'),'=',$tahun)
+                        ->where('dataLayanan','like',$layanan)
+                        ->where('dataUnit','like',$unit)
+                        ->count();
+            }
+
+            if($totalResponden==0) $totalResponden=1;
+
+            $jumlah=$this->hitungKelamin(1,$bulan,$tahun,$layanan,$unit);
             $result[] = array(
                         'dataId'=>1,                    
                         'compId'=>1,                    
@@ -79,7 +112,7 @@ class DemografiController extends Controllermaster
                         'dataJumlah'=>number_format($jumlah),                    
                         'dataPersentase'=>number_format($jumlah/$totalResponden*100,2).' %',                    
                       );
-            $jumlah=$this->hitungKelamin(2);
+            $jumlah=$this->hitungKelamin(2,$bulan,$tahun,$layanan,$unit);
             $result[] = array(
                         'dataId'=>1,                    
                         'compId'=>1,                    
@@ -104,7 +137,7 @@ class DemografiController extends Controllermaster
             foreach($umur as $key=>$val){
                 if($idx>0) $karakter='&nbsp;';
 
-                $jumlah=$this->hitungUmur($val->umurId);
+                $jumlah=$this->hitungUmur($val->umurId,$bulan,$tahun,$layanan,$unit);
                 if($jumlah==0){
                     $tjumlah='&nbsp;0';
                 }else{
@@ -137,7 +170,7 @@ class DemografiController extends Controllermaster
             foreach($kerja as $key=>$val){
                 if($idx>0) $karakter='&nbsp;';
 
-                $jumlah=$this->hitungKerja($val->kerjaId);
+                $jumlah=$this->hitungKerja($val->kerjaId,$bulan,$tahun,$layanan,$unit);
                 if($jumlah==0){
                     $tjumlah='&nbsp;0';
                 }else{
@@ -170,7 +203,7 @@ class DemografiController extends Controllermaster
             foreach($sekolah as $key=>$val){
                 if($idx>0) $karakter='&nbsp;';
 
-                $jumlah=$this->hitungSekolah($val->sekId);
+                $jumlah=$this->hitungSekolah($val->sekId,$bulan,$tahun,$layanan,$unit);
                 if($jumlah==0){
                     $tjumlah='&nbsp;0';
                 }else{
@@ -205,6 +238,9 @@ class DemografiController extends Controllermaster
                 'listdata' => $result,
                 'primaryKey' => $this->primaryKey,
                 'mainroute' => $this->mainroute,
+                'layanan' => $this->layanan::all(),
+                'unit' => $this->unit::all(),
+                'selected' => $selected,
                 'compId' => $compId,
                 'code' => 0,
             );
@@ -213,23 +249,80 @@ class DemografiController extends Controllermaster
         }
     }
 
-    public function hitungKelamin($idx){
-        $res = $this->model->where('dataKelamin','=',$idx)->count();
+    public function hitungKelamin($idx,$bulan,$tahun,$layanan,$unit){
+
+        if($bulan==0 and $tahun==0){
+            $res=$this->model
+                   ->where('dataKelamin','=',$idx)
+                    ->where('dataLayanan','like',$layanan)
+                    ->where('dataUnit','like',$unit)
+                    ->count();
+        }else{
+            $res=$this->model
+                   ->where('dataKelamin','=',$idx)
+                    ->where(DB::raw('MONTH(created_at)'),'=',$bulan)
+                    ->where(DB::raw('YEAR(created_at)'),'=',$tahun)
+                    ->where('dataLayanan','like',$layanan)
+                    ->where('dataUnit','like',$unit)
+                    ->count();
+        }
         return $res;
     }
 
-    public function hitungUmur($idx){
-        $res = $this->model->where('dataUmur','=',$idx)->count();
+    public function hitungUmur($idx,$bulan,$tahun,$layanan,$unit){
+        if($bulan==0 and $tahun==0){
+            $res=$this->model
+                    ->where('dataUmur','=',$idx)
+                    ->where('dataLayanan','like',$layanan)
+                    ->where('dataUnit','like',$unit)
+                    ->count();
+        }else{
+            $res=$this->model
+                    ->where('dataUmur','=',$idx)
+                    ->where(DB::raw('MONTH(created_at)'),'=',$bulan)
+                    ->where(DB::raw('YEAR(created_at)'),'=',$tahun)
+                    ->where('dataLayanan','like',$layanan)
+                    ->where('dataUnit','like',$unit)
+                    ->count();
+        }
         return $res;
     }
 
-    public function hitungKerja($idx){
-        $res = $this->model->where('dataPekerjaan','=',$idx)->count();
+    public function hitungKerja($idx,$bulan,$tahun,$layanan,$unit){
+        if($bulan==0 and $tahun==0){
+            $res=$this->model
+                    ->where('dataPekerjaan','=',$idx)
+                    ->where('dataLayanan','like',$layanan)
+                    ->where('dataUnit','like',$unit)
+                    ->count();
+        }else{
+            $res=$this->model
+                    ->where('dataPekerjaan','=',$idx)
+                    ->where(DB::raw('MONTH(created_at)'),'=',$bulan)
+                    ->where(DB::raw('YEAR(created_at)'),'=',$tahun)
+                    ->where('dataLayanan','like',$layanan)
+                    ->where('dataUnit','like',$unit)
+                    ->count();
+        }
         return $res;
     }
 
-    public function hitungSekolah($idx){
-        $res = $this->model->where('dataPendidikan','=',$idx)->count();
+    public function hitungSekolah($idx,$bulan,$tahun,$layanan,$unit){
+        if($bulan==0 and $tahun==0){
+            $res=$this->model
+                    ->where('dataPendidikan','=',$idx)
+                    ->where('dataLayanan','like',$layanan)
+                    ->where('dataUnit','like',$unit)
+                    ->count();
+        }else{
+            $res=$this->model
+                    ->where('dataPendidikan','=',$idx)
+                    ->where(DB::raw('MONTH(created_at)'),'=',$bulan)
+                    ->where(DB::raw('YEAR(created_at)'),'=',$tahun)
+                    ->where('dataLayanan','like',$layanan)
+                    ->where('dataUnit','like',$unit)
+                    ->count();
+        }
         return $res;
     }
 
