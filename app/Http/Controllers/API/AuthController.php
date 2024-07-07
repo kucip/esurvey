@@ -89,7 +89,7 @@ class AuthController extends Controller
         Session::put('email',$user->email);
         Session::put('role',$user->role);
 
-        return redirect('/cms');
+        return redirect('/dashboard');
     }
 
 
