@@ -36,7 +36,6 @@
 	<style type="text/css">
 		.page-content {
 /*		    background-image: url('{{url('/')}}/images/wall{{$wallidx ?? ''}}.jpg');*/
-		    background-image: url('{{url('/')}}/images/wall10.jpg');
 			-webkit-background-size: cover; /* For WebKit*/
 		    -moz-background-size: cover;    /* Mozilla*/
 		    -o-background-size: cover;      /* Opera*/
@@ -86,7 +85,7 @@
 
 
 	<!-- Page content -->
-	<div class="page-content">
+	<div class="page-content" style="background-image: url('{{url('/')}}/images/wall10.jpg')">
 
 		<!-- Main content -->
 		<div class="content-wrapper">
