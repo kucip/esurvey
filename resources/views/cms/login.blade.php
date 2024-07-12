@@ -126,10 +126,8 @@
 							</div>
 
 							<div class="form-group">
-								<!-- <button type="submit" class="btn btn-primary btn-block">Sign in <i class="icon-circle-right2 ml-2"></i></button> -->
-
-								<!-- <button id="button-no-recaptcha" type="submit" class="btn btn-primary btn-block d-none">Sign in <i class="icon-circle-right2 ml-2"></i></button> -->
-								<button id="button-recaptcha" class="btn btn-primary btn-block g-recaptcha" data-sitekey="{{config('services.recaptcha.key')}}" data-callback='onSubmit' data-action='submit'>Login<i class="icon-circle-right2 ml-2"></i></button>
+								<button id="button-login" class="btn btn-primary btn-block" data-callback='onSubmit' data-action='submit'>Login<i class="icon-circle-right2 ml-2"></i></button>
+								<!-- <button id="button-recaptcha" class="btn btn-primary btn-block g-recaptcha" data-sitekey="{{config('services.recaptcha.key')}}" data-callback='onSubmit' data-action='submit'>Login<i class="icon-circle-right2 ml-2"></i></button> -->
 
 							</div>
 
