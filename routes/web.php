@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::resource('/', App\Http\Controllers\Web\WebController::class);
-Route::resource('/cms', App\Http\Controllers\Cms\MainController::class);
+// Route::resource('/cms', App\Http\Controllers\Cms\MainController::class);
 Route::any('/thanks', [App\Http\Controllers\Web\WebController::class,'thanks']);
 Route::get('/getsession', function(){
 	return Session::all();
@@ -33,6 +33,7 @@ Route::resource('user', App\Http\Controllers\Cms\Setup\UserController::class);
 Route::resource('usercomp', App\Http\Controllers\Cms\Setup\UsercompController::class);
 Route::resource('gantipass', App\Http\Controllers\Cms\Setup\GantipassController::class);
 Route::any('dashboard', [App\Http\Controllers\Cms\MainController::class,'dashboard']);
+Route::any('cms', [App\Http\Controllers\Cms\MainController::class,'dashboard']);
 //Route Master
 Route::resource('docs', App\Http\Controllers\Cms\Master\DocsController::class);
 // Route Autocomplete
