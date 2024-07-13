@@ -36,36 +36,38 @@ class MainController extends Controllermaster
             return view('cms.login',$data);        
         }else{
 
-                $bulan=!empty($_GET['bulan'])?$_GET['bulan']:'0';
-                $tahun=!empty($_GET['tahun'])?$_GET['tahun']:'0';
+                // $bulan=!empty($_GET['bulan'])?$_GET['bulan']:'0';
+                // $tahun=!empty($_GET['tahun'])?$_GET['tahun']:'0';
 
-                $layanan=!empty($_GET['layanan'])?$_GET['layanan']:'%';
-                $unit=!empty($_GET['unit'])?$_GET['unit']:'%';
+                // $layanan=!empty($_GET['layanan'])?$_GET['layanan']:'%';
+                // $unit=!empty($_GET['unit'])?$_GET['unit']:'%';
 
-                $selected=array(
-                             'bulan'=>$bulan,   
-                             'tahun'=>$tahun,   
-                             'layanan'=>$layanan,   
-                             'unit'=>$unit,   
-                          );
+                // $selected=array(
+                //              'bulan'=>$bulan,   
+                //              'tahun'=>$tahun,   
+                //              'layanan'=>$layanan,   
+                //              'unit'=>$unit,   
+                //           );
                 
-                $data = array(
-                        'authmenu'=>$this->getusermenu(),
-                        'company' => Session::get('compNama'),
-                        'logo' => Session::get('compLogo'),
-                        'detail' => Session::get('compDetail'),
-                        'lokasi' => Session::get('compLokasi'),
-                        'name' => Session::get('name'),
-                        'namelong' => Session::get('email'),
-                        'tittle'=>'Home',
-                        'page_tittle'=> 'Home',
-                        'page_active'=>'Home',
-                        'layanan'=>'',
-                        'unit' => $this->unit::all(),
-                        'selected' => $selected,
-                        );
+                // $data = array(
+                //         'authmenu'=>$this->getusermenu(),
+                //         'company' => Session::get('compNama'),
+                //         'logo' => Session::get('compLogo'),
+                //         'detail' => Session::get('compDetail'),
+                //         'lokasi' => Session::get('compLokasi'),
+                //         'name' => Session::get('name'),
+                //         'namelong' => Session::get('email'),
+                //         'tittle'=>'Home',
+                //         'page_tittle'=> 'Home',
+                //         'page_active'=>'Home',
+                //         'layanan'=>'',
+                //         'unit' => $this->unit::all(),
+                //         'selected' => $selected,
+                //         );
 
-                return view('cms.home',$data)->with('data', $data);
+                // return view('cms.home',$data)->with('data', $data);
+
+                $this->dashboard();
         }
     }
 
