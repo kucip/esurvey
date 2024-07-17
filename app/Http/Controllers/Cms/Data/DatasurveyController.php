@@ -9,6 +9,8 @@ use App\Models\Master\Umur;
 use App\Models\Master\Sekolah;
 use App\Models\Master\Mspertanyaan;
 use App\Models\Master\Kerja;
+use App\Models\Master\Layanan;
+use App\Models\Master\Unit;
 use Session;
 use Input;
 
@@ -53,6 +55,20 @@ class DatasurveyController extends Controllermaster{
             array(
                 'label' => 'PEKERJAAN',
                 'field' => 'dataPekerjaan',
+                'type' => 'text',
+                'width' => '10%',
+                'class' => 'center'
+            ),
+            array(
+                'label' => 'LAYANAN',
+                'field' => 'dataLayanan',
+                'type' => 'text',
+                'width' => '10%',
+                'class' => 'center'
+            ),
+            array(
+                'label' => 'UNIT',
+                'field' => 'dataUnit',
                 'type' => 'text',
                 'width' => '10%',
                 'class' => 'center'
@@ -123,6 +139,8 @@ class DatasurveyController extends Controllermaster{
                     $listdata[$idx]['dataKelamin']='';                    
                 }
 
+                $listdata[$idx]['dataUnit']=$this->getUnit($val->dataUnit);                    
+                $listdata[$idx]['dataLayanan']=$this->getLayanan($val->dataLayanan);                    
                 $listdata[$idx]['dataPekerjaan']=$this->getPekerjaan($val->dataPekerjaan);                    
                 $listdata[$idx]['dataUmur']=$this->getUmur($val->dataUmur);                    
                 $listdata[$idx]['dataPendidikan']=$this->getPendidikan($val->dataPendidikan);                    
@@ -187,6 +205,17 @@ class DatasurveyController extends Controllermaster{
         $res = Sekolah::select('sekLevel')->where('sekId','=',$idx)->get();
         return !empty($res[0]->sekLevel)?$res[0]->sekLevel:'';
     }
+
+    public function getLayanan($idx){
+        $res = Layanan::select('layNama')->where('layId','=',$idx)->get();
+        return !empty($res[0]->layNama)?$res[0]->layNama:'';
+    }
+
+    public function getUnit($idx){
+        $res = Unit::select('unitNama')->where('unitId','=',$idx)->get();
+        return !empty($res[0]->unitNama)?$res[0]->unitNama:'';
+    }
+
 }
 
 
