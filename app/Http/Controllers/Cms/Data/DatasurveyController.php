@@ -35,14 +35,14 @@ class DatasurveyController extends Controllermaster{
                 'label' => 'GENDER',
                 'field' => 'dataKelamin',
                 'type' => 'text',
-                'width' => '10%',
+                'width' => '8%',
                 'class' => 'center'
             ),
             array(
                 'label' => 'UMUR',
                 'field' => 'dataUmur',
                 'type' => 'text',
-                'width' => '12%',
+                'width' => '10%',
                 'class' => 'center'
             ),
             array(
@@ -56,7 +56,7 @@ class DatasurveyController extends Controllermaster{
                 'label' => 'PEKERJAAN',
                 'field' => 'dataPekerjaan',
                 'type' => 'text',
-                'width' => '10%',
+                'width' => '8%',
                 'class' => 'center'
             ),
             array(
@@ -70,7 +70,7 @@ class DatasurveyController extends Controllermaster{
                 'label' => 'UNIT',
                 'field' => 'dataUnit',
                 'type' => 'text',
-                'width' => '10%',
+                'width' => '8%',
                 'class' => 'center'
             ),
             array(
@@ -84,7 +84,7 @@ class DatasurveyController extends Controllermaster{
                 'label' => 'LOG',
                 'field' => 'created_at',
                 'type' => 'text',
-                'width' => '10%',
+                'width' => '8%',
                 'class' => 'center'
             ),
         );
